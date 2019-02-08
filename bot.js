@@ -1545,12 +1545,7 @@ message.channel.send(`${msg.author} has tranfered \`$${args[1]}\` to ${men}.`)
 client.on('message', message => {
 if (message.content.startsWith("t!profile")) { // الامر
     let getvalueof = msg.mentions.users.first() || msg.author;
-
-    let res = await SQLite.get(`SELECT * FROM profileSystem WHERE id = ${getvalueof.id}`)
-
     if(!res) SQLite.run(`INSERT INTO profileSystem VALUES ('${msg.author.id}', 200, 0, ${xp}, 0, 0, 0, "Type ${prefix}setinfo to set info", "{}", "{wallSrc: '/walls/p2.png'}"`)
-
-
     let Image = Canvas.Image,
     canvas = Canvas.createCanvas(300, 300),
     ctx = canvas.getContext('2d');
