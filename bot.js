@@ -1544,31 +1544,24 @@ message.channel.send(`${msg.author} has tranfered \`$${args[1]}\` to ${men}.`)
 
 client.on('message', message => {
 if (message.content.startsWith("t!profile")) { // الامر
-    if(!res) SQLite.run(`INSERT INTO profileSystem VALUES ('${msg.author.id}', 200, 0, ${xp}, 0, 0, 0, "Type ${prefix}setinfo to set info", "{}", "{wallSrc: '/walls/p2.png'}"`)
-    let Image = Canvas.Image,
-    canvas = Canvas.createCanvas(300, 300),
-    ctx = canvas.getContext('2d');
-fs.readFile(__dirname + `/${JSON.parse(res.profileData).wallSrc}`, function (err, Background) {
-  fs.readFile(__dirname + `/walls/p1.png`, function (err, Background) {
-  if (err) return console.log(err);
-  let BG = Canvas.Image;
-  let ground = new Image;
-  ground.src = Background;
-  ctx.drawImage(ground, 0, 0, 297, 305);
-});
-  if (err) return console.log(err);
-  let BG = Canvas.Image;
-  let ground = new Image;
-  ground.src = Background;
-  ctx.drawImage(ground, 0, 0, 300, 305);
-});
-
-
-let url = getvalueof.displayAvatarURL.endsWith(".webp") ? getvalueof.displayAvatarURL.slice(5, -20) + ".png" : getvalueof.displayAvatarURL;
-Jimp.read(url, (err, ava) => {
-    if (err) return console.log(err);
-    ava.getBuffer(Jimp.MIME_PNG, async (err, buf) => {
-        if (err) return console.log(err);
+ let canvas = new Canvas(300, 300) //حجم الصوره الي هتظهر
+ let ctx = canvas.getContext('2d')
+    let Image = Canvas.Image
+   
+   
+                      //  ava.src = buf;
+ 
+    fs.readFile(__dirname + '/walls/profile.png', function(err, picture) { //مكان الصوره
+      if (err) throw err
+      var img = new Image
+                var url = message.author.avatarURL; //افتار صورتك
+        url = url.substring(0, url.indexOf('?'));
+ 
+        r1.get(url).then(res => {
+            var dataURL = res.body.toString('base64');
+            dataURL = 'data:image/png;base64,' + dataURL;
+            img.onload = function() {
+ 
 
 
         //Avatar
@@ -1632,18 +1625,11 @@ Jimp.read(url, (err, ava) => {
         ctx.textAlign = "left";
         ctx.fillText(`+${res.rep}`, 18,270)
 
-msg.channel.send("**:white_check_mark: `Show Profile` ?**" + `${msg.author}`, {
-file: canvas.toBuffer()
 })
 })
 })
- 
- 
-};
- 
- 
- 
- 
+
 });
+})
 
 client.login(process.env.BOT_TOKEN);
