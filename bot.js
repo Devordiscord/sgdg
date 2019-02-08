@@ -83,7 +83,7 @@ client.on('guildMemberAdd', member => {
 });
 
 
-
+let antibots = JSON.parse(fs.readFileSync('./spread.json' , 'utf8'));
 client.on('message', message => {
     if(message.content.startsWith(prefix + "antispread on")) {
         if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
@@ -91,7 +91,7 @@ client.on('message', message => {
 spread[message.guild.id] = {
 onoff: 'On',
 }
-message.channel.send(`**✅ The AntiSpread Is __𝐎𝐍__ !**`)
+message.channel.send(`**✅ The AntiSpread Is 𝐎𝐍 !**`)
           fs.writeFile("./spread.json", JSON.stringify(spread), (err) => {
             if (err) console.error(err)
             .catch(err => {
