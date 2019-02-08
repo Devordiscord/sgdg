@@ -1379,7 +1379,7 @@ client.on('message', message => {
     message.channel.send(id)
 }});
 
-const ms = require("ms");
+
   client.on("message", message => {
  if(!message.channel.guild) return;  
   if (message.author.bot) return;
