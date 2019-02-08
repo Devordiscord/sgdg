@@ -44,7 +44,7 @@ client.on('ready', () => {
 
 
 client.on('guildMemberAdd', member => {
-    const channel = member.guild.channels.find('name', 'chat');
+    const channel = member.guild.channels.find('name', 'welcome');
     const millis = new Date().getTime() - member.user.createdAt.getTime();
     const now = new Date();
     const createdAt = millis / 1000 / 60 / 60 / 24;
@@ -71,7 +71,7 @@ client.on('guildMemberAdd', member => {
     const ei = invites[member.guild.id];
     const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
     const inviter = client.users.get(invite.inviter.id);
-    const Galal = member.guild.channels.find("name", "chat");
+    const Galal = member.guild.channels.find("name", "welcome");
      Galal.send(`**<@${member.user.id}>
 Welcome - To - Pure :musical_score: ! 
 By : <@${inviter.id}> .**`);
