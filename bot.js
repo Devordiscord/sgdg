@@ -41,8 +41,8 @@ client.on('ready', () => {
 
 client.on('guildMemberAdd', member => {
     wait(1000);
+	
     const channel = member.guild.channels.find('name', 'chat');
-  
     const millis = new Date().getTime() - member.user.createdAt.getTime();
     const now = new Date();
     const createdAt = millis / 1000 / 60 / 60 / 24;
