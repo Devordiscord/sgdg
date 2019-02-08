@@ -57,6 +57,27 @@ client.on('guildMemberAdd', member => {
   
 });
 
+client.on('ready', () => {
+  wait(1200);
+
+  client.guilds.forEach(g => {
+    g.fetchInvites().then(guildInvites => {
+      invites[g.id] = guildInvites;
+    });
+  });
+});
+client.on('guildMemberAdd', member => {
+  member.guild.fetchInvites().then(guildInvites => {
+    const ei = invites[member.guild.id];
+    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+    const inviter = client.users.get(invite.inviter.id);
+    const Galal = member.guild.channels.find("name", "chat");
+     Galal.send(`**<@${member.user.id}>
+Welcome - To - Pure :musical_score: ! 
+By : <@${inviter.id}> .**`);
+   //  Galal.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
+  }); 
+});
 
 const pics = JSON.parse(fs.readFileSync('./pics.json' , 'utf8'));
  client.on('message', message => {
@@ -86,6 +107,25 @@ const pics = JSON.parse(fs.readFileSync('./pics.json' , 'utf8'));
       })
     }})
        
+
+onst sWlc = {}
+client.on('message', message => {
+var prefix = "t!";
+if(message.channel.type === "dm") return;
+if(message.author.bot) return;
+  if(!sWlc[message.guild.id]) sWlc[message.guild.id] = {
+    channel: "welcome"
+}
+const channel = sWlc[message.guild.id].channel
+  if (message.content.startsWith(prefix + "setwelcome")) {
+    if(!message.member.hasPermission(`MANAGE_GUILD`)) return;
+    let newChannel = message.content.split(' ').slice(1).join(" ")
+    if(!newChannel) return message.reply(`**${prefix}setwelcomer <channel name>**`)
+    sWlc[message.guild.id].channel = newChannel
+    message.channel.send(`**${message.guild.name}'s channel has been changed to ${newChannel}**`);
+  }
+});
+
 client.on('message', message => {
  
   if(message.content.startsWith(prefix + "toggleMedia")) {
