@@ -56,7 +56,7 @@ client.on('guildMemberAdd', member => {
     .setColor("black")
     .setDescription(`**تاريخ دخولك للدسكورد منذ ${createdAt.toFixed(0)} يوم**`)
     .setAuthor(member.user.tag, member.user.avatarURL);
-    channel.sendEmbed(embed);
+     message.channel.sendEmbed(embed)
 
   
 });
