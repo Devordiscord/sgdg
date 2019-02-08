@@ -38,7 +38,7 @@ client.on('ready', () => {
 });
 
 
-let antibots = JSON.parse(fs.readFileSync('./antibots.json' , 'utf8'));
+
 client.on('guildMemberAdd', member => {
     const channel = member.guild.channels.find('name', 'chat');
     const millis = new Date().getTime() - member.user.createdAt.getTime();
@@ -53,7 +53,7 @@ client.on('guildMemberAdd', member => {
   
 });
 
-
+let antijoin = JSON.parse(fs.readFileSync('./antijoin.json.' , 'utf8'));
 client.on('message', message => {
     if(message.content.startsWith(prefix + "antifake on")) {
         if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
