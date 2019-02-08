@@ -1476,11 +1476,7 @@ client.on('message' , message => {
    
    
 const config = require(path.join(__dirname, 'config.json')); // Bot Config
-const {
-  token,
-  prefix,
-  ids
-} = config;
+
 
 Object.keys(cmds).forEach(key => {
 var value = cmds[key];
