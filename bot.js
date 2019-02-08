@@ -1578,7 +1578,6 @@ if (message.content.startsWith("t!profile")) { // الامر
         ctx.fillText(`${getvalueof.username}`, 100, 125) // احداثيات اسمك
 
          //bord
-         let leaderboard = await SQLite.all(`SELECT * FROM profileSystem ORDER BY xp DESC, credits DESC`);
         ctx.font = "regular 12px profile" // نوع الخط وحجمه
         ctx.fontSize = '50px'; // عرض الخط
         ctx.fillStyle = "#FFFFFF" // لون الخط
