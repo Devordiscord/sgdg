@@ -1489,9 +1489,9 @@ if (message.content.startsWith(prefix + 'credit')) {
   };
   }
   if(men) {
-message.channel.send(`**Your ًں’³ balance is: **\`$${credits}\``)
+message.channel.send(`**Your :credit_card:  balance is: **\`$${credits}\``)
 } else {
-  message.channel.send(`**${user.tag} ًں’³ balance is: **\`$${credits}\``)
+  message.channel.send(`** Your :credit_card: balance is: **\`$${credits}\``)
 }
 }
  
