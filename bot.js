@@ -40,19 +40,11 @@ client.on('ready', () => {
 
 
 client.on('guildMemberAdd', member => {
-
     const channel = member.guild.channels.find('name', 'chat');
-  
     const millis = new Date().getTime() - member.user.createdAt.getTime();
     const now = new Date();
     const createdAt = millis / 1000 / 60 / 60 / 24;
-
-
-
-
-  
     const embed = new Discord.RichEmbed()
-    
     .setColor("black")
     .setDescription(`**تاريخ دخولك للدسكورد منذ ${createdAt.toFixed(0)} يوم**`)
     .setAuthor(member.user.tag, member.user.avatarURL);
@@ -61,30 +53,30 @@ client.on('guildMemberAdd', member => {
   
 });
 
-client.on('ready', () => {
-  wait(1100);
-
-  client.guilds.forEach(g => {
-    g.fetchInvites().then(guildInvites => {
-      invites[g.id] = guildInvites;
-    });
-  });
-});
-
-client.on('guildMemberAdd', member => {
-  member.guild.fetchInvites().then(guildInvites => {
-    const ei = invites[member.guild.id];
-    invites[member.guild.id] = guildInvites;
-    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-    const inviter = client.users.get(invite.inviter.id);
-    const logChannel = member.guild.channels.find(channel => channel.name === "chat");
-    logChannel.send(`**Invited by: <@${inviter.id}>**`);
-  });
-});
 
 
-let antibots = JSON.parse(fs.readFileSync('./spread.json' , 'utf8'));
+
+let spread = JSON.parse(fs.readFileSync('./spread.json' , 'utf8'));
+ 
+ 
 client.on('message', message => {
+    if(message.content.startsWith(prefix + "antispread off")) {
+        if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
+        if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
+spread[message.guild.id] = {
+onoff: 'Off',
+}
+message.channel.send(`**⛔ The AntiSpread Is 𝐎𝐅𝐅 !**`)
+          fs.writeFile("./spread.json", JSON.stringify(spread), (err) => {
+            if (err) console.error(err)
+            .catch(err => {
+              console.error(err);
+          });
+            });
+          }
+ 
+        })
+        client.on('message', message => {
     if(message.content.startsWith(prefix + "antispread on")) {
         if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
         if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
@@ -204,6 +196,10 @@ client.on('message', message => {
     }
  
 });
+
+
+
+
 
 const temp = {};
 client.on('message', async message => {
