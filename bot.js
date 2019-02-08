@@ -591,15 +591,17 @@ client.on('message', message => {
      message.channel.send('```تم ارسال الاوامر في الخاص```');
  message.author.sendMessage(`
  \`\`\`                           
-                                 ┎  Information About Bot  ┒
-┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃  ╭━━━━╮╱╱╱╱╱╱╱╭━━╮╱╱╱╭╮      ┃           Addition           ┃         Programmers        ┃
-┃  ┃╭╮╭╮┃╱╱╱╱╱╱╱┃╭╮┃╱╱╭╯╰╮     ┃   Time taken  : 108 ms.      ┃1- ! Lòrans. ♪              ┃
-┃  ╰╯┃┃┣┻━┳━┳━━━┫╰╯╰┳━┻╮╭╯     ┃   Discord API : 95 ms.       ┃2- ' Omar,Malki.            ┃
-┃  ╱╱┃┃┃╭╮┃╭╋━━┃┃╭━╮┃╭╮┃┃      ┃   Average     : 17ms.        ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┨ 
-┃  ╱╱┃┃┃╰╯┃┃┃┃━━┫╰━╯┃╰╯┃╰╮     ┃   Nema Bot    : Torz Bot.    ┃         Thank you          ┃
-┃  ╱╱╰╯╰━━┻╯╰━━━┻━━━┻━━┻━╯     ┃   Dev's       :! Lòrans. ♪   ┃    For your use Torz Bot   ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  
+                             ┎  Information About Bot  ┒
+┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃  ╭━━━━╮╱╱╱╱╭━━╮╱╱╱╭╮    ┃           Addition           ┃        Programmers         ┃
+┃  ┃╭╮╭╮┃╱╱╱╱┃╭╮┃╱╱╭╯╰╮   ┃                              ┃ 1- ! Lòrans. ♪             ┃
+┃  ╰╯┃┃┣┻━┳━━┫╰╯╰┳━┻╮╭╯   ┃  Time taken  : 108 ms.       ┃ 2- є 3 s α я               ┃
+┃  ╱╱┃┃┃╭╮┃╭╮┃╭━╮┃╭╮┃┃    ┃  Discord API : 95 ms.        ┃ 3-' Omar,Malki.            ┃
+┃  ╱╱┃┃┃╰╯┃╰╯┃╰━╯┃╰╯┃╰╮   ┃  Average     : 17ms.         ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┨
+┃  ╱╱╰╯╰━━┫╭━┻━━━┻━━┻━╯   ┃  Nema Bot    : Torz Bot.     ┃         Thank you          ┃
+┃  ╱╱╱╱╱╱╱┃┃              ┃  Dev's       :! Lòrans. ♪    ┃   For your use TopBot      ┃
+┃  ╱╱╱╱╱╱╱╰╯              ┃                              ┃                            ┃
+┗━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  
                                                                                                 
 الاوامر الاداريه 
   
@@ -1489,9 +1491,9 @@ if (message.content.startsWith(prefix + 'credit')) {
   };
   }
   if(men) {
-message.channel.send(`**Your :credit_card:  balance is: **\`${profile[men.id].credits}$``)
+message.channel.send(`**${men.username} , :credit_card:  balance is: **\`${profile[men.id].credits}$``)
 } else {
-  message.channel.send(`** Your :credit_card: balance is: **\`${profile[message.author.id].credits}$``)
+  message.channel.send(`**${message.author.username}, :credit_card: balance is: **\`${profile[message.author.id].credits}$``)
 }
 }
  
