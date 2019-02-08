@@ -1489,9 +1489,9 @@ if (message.content.startsWith(prefix + 'credit')) {
   };
   }
   if(men) {
-message.channel.send(`**Your :credit_card:  balance is: **\`$${credits}\``)
+message.channel.send(`**Your :credit_card:  balance is: **\`${profile[men.id].credits}$``)
 } else {
-  message.channel.send(`** Your :credit_card: balance is: **\`$${credits}\``)
+  message.channel.send(`** Your :credit_card: balance is: **\`${profile[message.author.id].credits}$``)
 }
 }
  
@@ -1539,6 +1539,5 @@ message.channel.send(`${msg.author} has tranfered \`$${args[1]}\` to ${men}.`)
 }
 
 });
-
 
 client.login(process.env.BOT_TOKEN);
