@@ -571,22 +571,24 @@ client.on('message',async message => {
  
 
 
- client.on('message', message => {
-    var prefix = 't!'
-    if (message.content.startsWith(prefix + "avatar")) {
-        var mentionned = message.mentions.users.first();
-    var x5bzm;
+client.on('message', message => {
+  if (!message.content.startsWith(prefix)) return;
+  var args = message.content.split(' ').slice(1);
+  var argresult = args.join(' ');
+       if (message.content.startsWith(prefix + "avatar")) {
+           var mentionned = message.mentions.users.first();
+    var MsH;
       if(mentionned){
-          var x5bzm = mentionned;
+          var MsH = mentionned;
       } else {
-          var x5bzm = message.author;
-          
+          var MsH = message.author;
+         
       }
-        const embed = new Discord.RichEmbed()
-        .setImage(`${x5bzm.avatarURL}`)
-      message.channel.sendEmbed(embed);
-    }
-}); 
+          message.channel.send(MsH.avatarURL)
+          message.delete(3000);
+      }
+         
+});
 
 client.on("message", message => {    
           if(!message.channel.guild) return;
