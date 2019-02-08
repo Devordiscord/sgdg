@@ -66,7 +66,7 @@ message.channel.sendEmbed(embed)
 client.on('message', message => {
     if (message.author.bot) return;
      if (message.content === prefix + "help") {
-     message.channel.send('```تم ارسال رسالة في الخاص```');
+     message.channel.send('```تم ارسال اوامر البوت برساله خاصه```');
 
 
 
@@ -75,7 +75,7 @@ client.on('message', message => {
 \`\`\`
   ╭━━━━╮╱╱╱╱╱╱╱╭━━╮╱╱╱╭╮      |
   ┃╭╮╭╮┃╱╱╱╱╱╱╱┃╭╮┃╱╱╭╯╰╮     |  Time taken  : 108 ms.
-  ╰╯┃┃┣┻━┳━┳━━━┫╰╯╰┳━┻╮╭╯     |  Discord API : 85 ms.
+  ╰╯┃┃┣┻━┳━┳━━━┫╰╯╰┳━┻╮╭╯     |  Discord API : 95 ms.
   ╱╱┃┃┃╭╮┃╭╋━━┃┃╭━╮┃╭╮┃┃      |  Nema Bot    : Torz Bot.
   ╱╱┃┃┃╰╯┃┃┃┃━━┫╰━╯┃╰╯┃╰╮     |  Dev's       :! Lòrans. ♪
   ╱╱╰╯╰━━┻╯╰━━━┻━━━┻━━┻━╯     |   
@@ -113,7 +113,7 @@ https://discordapp.com/api/oauth2/authorize?client_id=533070826011099146&permiss
 **
 `);
 
-message.channel.send('```تم الارسال في الخاص```');
+message.channel.send('```تم ارسال رابط البوت برساله خاصه```');
 
     }
 });
@@ -131,7 +131,7 @@ Server Support : https://discord.gg/hDeK9TP
 **
 `);
 
-message.channel.send('```تم الارسال في الخاص```');
+message.channel.send('```تم ارسال سرفر سبورت البوت برساله خاصه```');
 
     }
 });
