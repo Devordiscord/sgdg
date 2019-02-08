@@ -471,7 +471,6 @@ client.on('message', message => {
 
 
       } else if(message.content.startsWith(aprefix + 'setStatus')) {
-        if(!argresult) return message.channel.send('online,DND(Do not Distrub),`idle, invisible(Offline) ?? Select a situation');
         client.user.setStatus(argresult);
 
 });
