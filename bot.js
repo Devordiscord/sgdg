@@ -53,66 +53,7 @@ client.on('guildMemberAdd', member => {
   
 });
 
-let antijoin = JSON.parse(fs.readFileSync('./antijoin.json.' , 'utf8'));
-client.on('message', message => {
-    if(message.content.startsWith(prefix + "antifake on")) {
-        if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
-        if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
-antijoin[message.guild.id] = {
-onoff: 'On',
-}
-message.channel.send(`**✅ The AntiJoin Is 𝐎𝐍 !**`)
-          fs.writeFile("./antijoin.json", JSON.stringify(antijoin), (err) => {
-            if (err) return console.error(err)
-            .catch(err => {
-              console.error(err);
-          });
-            });
-          }
- 
-        })
- 
- 
- 
-client.on('message', message => {
-    if(message.content.startsWith(prefix + "antifake off")) {
-        if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
-        if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
-antijoin[message.guild.id] = {
-onoff: 'Off',
-}
-message.channel.send(`**⛔ The AntiJoin Is 𝐎𝐅𝐅 !**`)
-          fs.writeFile("./antijoin.json", JSON.stringify(antijoin), (err) => {
-            if (err) return console.error(err)
-            .catch(err => {
-              console.error(err);
-          });
-            });
-          }
- 
-        })
-         client.on('message', message => {
-          if (!message.channel.guild) return;
-   if(message.content.startsWith(prefix + "setfake")) {
-          let time = message.content.split(" ").slice(1).join(" ");
-       if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
-       if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
-if (!time) return message.channel.send('Please Type The Account Created Time [Days]');
-let embed = new Discord.RichEmbed()
-.setTitle('**Done The AntiJoin Code Has Been Setup**')
-.addField('Account Create Time:', `${time}.`)
-.addField('Requested By:', `${message.author}`)
-.setThumbnail(message.author.avatarURL)
-.setFooter(`${client.user.username}`)
-message.channel.sendEmbed(embed)
-antijoin[message.guild.id] = {
-created: time,
-onoff: 'On',
-}
-fs.writeFile("./antijoin.json", JSON.stringify(antijoin), (err) => {
-if (err) console.error(err)
-})
-   }})
+
  
 client.on("guildMemberAdd", async member => {
   if(!antijoin[member.guild.id]) antijoin[member.guild.id] = {
@@ -585,7 +526,6 @@ ${prefix}avatar : يظهر لك صورتك
 ${prefix}roll : لعمل قرعه
 ${prefix}temp on : لتفعيل خاصيه الروم الصوتي المؤقت
 ${prefix}temp off : لاقفال خاصيه الروم الصوتي المؤقت
-${prefix}temp time : لتعديل الوقت في خصيه الروم الصوتي
 ${prefix}antispread on : لتفعيل خاصيه منع الروابط
 ${prefix}antispread off : لاقفال خاصيه منع الروابط
 ${prefix}antibots on : لتفعيل خاصيه منع اي بوت من دخول السرفر
