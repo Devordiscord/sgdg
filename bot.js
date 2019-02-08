@@ -154,7 +154,6 @@ client.on('message', message => {
         } else {
          message.channel.send(`**:stopwatch: |  ${message.author.username}, you can raward more reputation  ${moment().endOf('day').fromNow()} **`)
         }
-})
 });
  
 
