@@ -37,83 +37,144 @@ client.on('ready', () => {
   console.log('')
 });
 
-let antibots = JSON.parse(fs.readFileSync('./antibots.json' , 'utf8'));
-client.on('message', message => {
-    if(message.content.startsWith(prefix + "antifake on")) {
-        if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
-        if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
-antijoin[message.guild.id] = {
-onoff: 'On',
-}
-message.channel.send(`**✅ The AntiJoin Is 𝐎𝐍 !**`)
-          fs.writeFile("./antijoin.json", JSON.stringify(antijoin), (err) => {
-            if (err) return console.error(err)
-            .catch(err => {
-              console.error(err);
-          });
-            });
-          }
+bot.on('message', message => {
  
+if (message.content.startsWith("t!profile")) { // الامر
+ let canvas = new Canvas(300, 300) //حجم الصوره الي هتظهر
+ let ctx = canvas.getContext('2d')
+    let Image = Canvas.Image
+   
+   
+                      //  ava.src = buf;
+ 
+    fs.readFile('profile.png', function(err, picture) { //مكان الصوره
+      if (err) throw err
+      var img = new Image
+                var url = message.author.avatarURL; //افتار صورتك
+        url = url.substring(0, url.indexOf('?'));
+ 
+        r1.get(url).then(res => {
+            var dataURL = res.body.toString('base64');
+            dataURL = 'data:image/png;base64,' + dataURL;
+            img.onload = function() {
+ 
+                ctx.save();
+            ctx.beginPath();
+            ctx.arc(54, 103, 47, 0, Math.PI * 2, true); // احدثيات الدائره
+            ctx.closePath();
+            ctx.clip();
+            ctx.drawImage(img, 8, 57, 92, 92); // الصوره
+            ctx.restore();
+            }
+            img.src = dataURL;
+        });
+       
+      img.onload = () => {
+        ctx.drawImage(img, 1, 1, 300, 300)
+     //   ctx.drawImage(message.author.avatarURL, 152, 27, 95, 95);
+        ctx.font = "regular 11px Cairo" // نوع الخط وحجمه
+        ctx.fillStyle = "#9f9f9f" // لون الخط
+        ctx.fillText(`${message.author.username}`, 140, 137)
+        ctx.fillText(`${mo}  `, 143, 219) //money
+        ctx.fillText(`${po}`, 120, 202) // النقاط
+ 
+        //Level
+        ctx.font = "regular 21px Cairo"
+        ctx.fillStyle = "#ffffff"
+        ctx.fillText(`${lev}`, 47, 255) //لفل
+ 
+        ctx.save()
+       
+      }
+      img.src = picture
+           
+    })
+       
+   
+ 
+   
+ 
+    setTimeout(function() {
+      fs.readFile(__dirname + '/images_profile/diamond_prof_bg.png', function(err, picture) {
+        if (err) throw err
+        var img = new Image
+        img.onload = () => {
+          ctx.drawImage(img, -1, -1, 0, 0)
+        }
+        img.src = picture
+        let inventoryPicture = canvas.toDataURL()
+        let data = inventoryPicture.replace(/^data:image\/\w+;base64,/, "")
+        let buf = new Buffer(data, 'base64')
+      fs.writeFile(`image.png`, buf)
+     
+        message.channel.send("", {
+          file: `image.png`
         })
+      })
+    }, 1000)
  
  
- 
-client.on('message', message => {
-    if(message.content.startsWith(prefix + "antifake off")) {
-        if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
-        if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
-antijoin[message.guild.id] = {
-onoff: 'Off',
-}
-message.channel.send(`**⛔ The AntiJoin Is  𝐎𝐅𝐅 !**`)
-          fs.writeFile("./antijoin.json", JSON.stringify(antijoin), (err) => {
-            if (err) return console.error(err)
-            .catch(err => {
-              console.error(err);
-          });
-            });
-          }
- 
-        })
-         client.on('message', message => {
-          if (!message.channel.guild) return;
-   if(message.content.startsWith(prefix + "setfake")) {
-          let time = message.content.split(" ").slice(1).join(" ");
-       if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
-       if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
-if (!time) return message.channel.send('Please Type The Account Created Time [Days]');
-let embed = new Discord.RichEmbed()
-.setTitle('**Done The AntiJoin Code Has Been Setup**')
-.addField('Account Create Time:', `${time}.`)
-.addField('Requested By:', `${message.author}`)
-.setThumbnail(message.author.avatarURL)
-.setFooter(`${client.user.username}`)
-message.channel.sendEmbed(embed)
-antijoin[message.guild.id] = {
-created: time,
-onoff: 'On',
-}
-fs.writeFile("./antijoin.json", JSON.stringify(antijoin), (err) => {
-if (err) console.error(err)
-})
-   }})
- 
-client.on("guildMemberAdd", async member => {
-  if(!antijoin[member.guild.id]) antijoin[member.guild.id] = {
-    onoff: 'Off'
-  }
-  if(antijoin[member.guild.id].onoff === 'Off') return;
-  if(!member.user.bot) return;
-    let accounttime = `${antijoin[member.guild.id].created}`
-    let moment2 = require('moment-duration-format'),
-        moment = require("moment"),
-        date = moment.duration(new Date() - member.user.createdAt).format("d");
- 
-    if(date < accounttime) {
-      member.ban(`Member account age is lower than ${antijoin[member.guild.id].created} days.`)
+    function roundedImage(x, y, width, height, radius) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
     }
+ 
+    function wrapText(context, text, x, y, maxWidth, lineHeight) {
+ 
+      var words = text.split(' '),
+        line = '',
+        lineCount = 0,
+        i,
+        test,
+        metrics;
+ 
+      for (i = 0; i < words.length; i++) {
+        test = words[i];
+        metrics = context.measureText(test);
+        while (metrics.width > maxWidth) {
+ 
+          test = test.substring(0, test.length - 1);
+          metrics = context.measureText(test);
+        }
+        if (words[i] != test) {
+          words.splice(i + 1, 0, words[i].substr(test.length))
+          words[i] = test;
+        }
+ 
+        test = line + words[i] + ' ';
+        metrics = context.measureText(test);
+ 
+        if (metrics.width > maxWidth && i > 0) {
+          context.fillText(line, x, y);
+          line = words[i] + ' ';
+          y += lineHeight;
+          lineCount++;
+        } else {
+          line = test;
+        }
+      }
+ 
+      ctx.fillText(line, x, y);
+    }
+ 
+ 
+ 
+ 
+};
+ 
+ 
+ 
+ 
 });
-
 
 client.on('guildMemberAdd', member => {
 
