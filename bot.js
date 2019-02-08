@@ -6,6 +6,7 @@ const fs = require('fs');
 const Canvas = require("canvas");
 const jimp = require("jimp");
 const invites = {};
+const wait = require('util').promisify(setTimeout);
 var prefix = "t!";
 
 
@@ -39,7 +40,7 @@ client.on('ready', () => {
 
 
 client.on('guildMemberAdd', member => {
-
+    wait(1000);
     const channel = member.guild.channels.find('name', 'chat');
   
     const millis = new Date().getTime() - member.user.createdAt.getTime();
@@ -53,15 +54,33 @@ client.on('guildMemberAdd', member => {
     const embed = new Discord.RichEmbed()
     
     .setColor("black")
-    .setDescription(`**تاريخ دخولك للدسكورد منذ ${createdAt.toFixed(0)} يوم**`)
-    .setDescription(`**Invite By <@${inviter.id}>.**`)
+    .setDescription(`**${createdAt.toFixed(0)} تاريخ دخولك للدسكورد منذ يوم **`)
     .setAuthor(member.user.tag, member.user.avatarURL);
     channel.sendEmbed(embed);
 
   
 });
 
+client.on('ready', () => {
+  wait(1100);
 
+  client.guilds.forEach(g => {
+    g.fetchInvites().then(guildInvites => {
+      invites[g.id] = guildInvites;
+    });
+  });
+});
+
+client.on('guildMemberAdd', member => {
+  member.guild.fetchInvites().then(guildInvites => {
+    const ei = invites[member.guild.id];
+    invites[member.guild.id] = guildInvites;
+    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+    const inviter = client.users.get(invite.inviter.id);
+    const logChannel = member.guild.channels.find(channel => channel.name === "chet");
+    logChannel.send(`**Invited by: <@${inviter.id}>**`);
+  });
+});
 
 
 
