@@ -447,33 +447,7 @@ client.on('message', async message => {
           }
       });
 
-const aprefix = "t!vip";
-const devs = ['525434548939653151','494164834049327125'];
-client.on('message', message => {
-    let argresult = message.content.split(`).slice(1).join(' ');
-    if (message.content.startsWith(aprefix + 'st')) {    
-      client.user.setGame(argresult, 'https://twitch.tv/DynastyShop');
 
-    } else if(message.content.startsWith(aprefix + 'wt')) {
-        client.user.setActivity(argresult,{type: 'WATCHING'});
-
-      } else if(message.content.startsWith(aprefix + 'ls')) {
-        client.user.setActivity(argresult,{type: 'Listening'});
-
-      } else if(message.content.startsWith(aprefix + 'ply')) {
-        client.user.setActivity(argresult,{type: 'Playing'});
-
-      } else if(message.content.startsWith(aprefix + 'setn')) {
-        client.user.setUsername(argresult);
-
-      } else if(message.content.startsWith(aprefix + 'seta')) {
-        client.user.setAvatar(argresult);
-
-
-      } else if(message.content.startsWith(aprefix + 'setStatus')) {
-        client.user.setStatus(argresult);
-
-});
     
 client.on('ready', () => {
         console.log(`back`);
