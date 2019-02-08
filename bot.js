@@ -447,31 +447,35 @@ client.on('message', async message => {
           }
       });
 
-const adminprefix = "t!vip";
+const aprefix = "t!vip";
 const devs = ['525434548939653151','494164834049327125'];
 client.on('message', message => {
-  var argresult = message.content.split(` `).slice(1).join(' ');
-    if (!devs.includes(message.author.id)) return;
-    
-if (message.content.startsWith(adminprefix + 'setgame')) {
-  client.user.setGame(argresult);
-    message.channel.sendMessage(`**${argresult} تم تغيير بلاينق البوت إلى **`)
-} else 
-  if (message.content.startsWith(adminprefix + 'setname')) {
-client.user.setUsername(argresult).then
-    message.channel.sendMessage(`**${argresult}** : تم تغيير أسم البوت إلى`)
-return message.reply("**لا يمكنك تغيير الاسم يجب عليك الانتظآر لمدة ساعتين . **");
-} else
-  if (message.content.startsWith(adminprefix + 'setavatar')) {
-client.user.setAvatar(argresult);
-  message.channel.sendMessage(`**${argresult}** : تم تغير صورة البوت`);
-      } else     
-if (message.content.startsWith(adminprefix + 'setT')) {
-  client.user.setGame(argresult, "https://www.twitch.tv/idk");
-    message.channel.sendMessage(`**${argresult} تم تغيير تويتش البوت إلى  **`)
-}
+    let argresult = message.content.split(`).slice(1).join(' ');
+    if (message.content.startsWith(aprefix + 'st')) {    
+      client.user.setGame(argresult, 'https://twitch.tv/DynastyShop');
+
+    } else if(message.content.startsWith(aprefix + 'wt')) {
+        client.user.setActivity(argresult,{type: 'WATCHING'});
+
+      } else if(message.content.startsWith(aprefix + 'ls')) {
+        client.user.setActivity(argresult,{type: 'Listening'});
+
+      } else if(message.content.startsWith(aprefix + 'ply')) {
+        client.user.setActivity(argresult,{type: 'Playing'});
+
+      } else if(message.content.startsWith(aprefix + 'setn')) {
+        client.user.setUsername(argresult);
+
+      } else if(message.content.startsWith(aprefix + 'seta')) {
+        client.user.setAvatar(argresult);
+
+
+      } else if(message.content.startsWith(aprefix + 'setStatus')) {
+        if(!argresult) return message.channel.send('online,DND(Do not Distrub),`idle, invisible(Offline) ?? Select a situation');
+        client.user.setStatus(argresult);
 
 });
+    
 client.on('ready', () => {
         console.log(`back`);
               client.user.setActivity("Soon | t!help", {type: 'WATCHING'});
