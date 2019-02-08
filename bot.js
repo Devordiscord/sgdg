@@ -662,55 +662,7 @@ client.on('voiceStateUpdate', (voiceOld, voiceNew) => {
     } //Toxic Codes    //  PremiumBot
 }); //Toxic Codes    //  PremiumBot //Toxic Codes    //  PremiumBot //Toxic Codes    //  PremiumBot //Toxic Codes    //  PremiumBot //Toxic Codes    //  PremiumBot
 
-client.on("message", message => {
-const sm = require("string-similarity");
-let members = [];
-let indexes = [];
- 
-let args = message.content.split(" ");
-let prefix = "t!";
-if(args[0].toLowerCase() === (prefix + "avatar")){
-   let members = [];
-let indexes = [];
- let mentionn = message.mentions.users.first();
-     if(!args[1]) {
-  let x = new Discord.RichEmbed()
-  x.setDescription(`${message.author}'s Profile picture :frame_photo:`)
-  x.setImage(`${message.author.avatarURL}`)
-  message.channel.send(x)
- }
- 
- if(mentionn){
- 
- 
- 
-  let m = new Discord.RichEmbed();
-m.setDescription(`${mentionn}'s Profile picture :frame_photo:`)
-m.setImage(`${mentionn.avatarURL}`)
-message.channel.send(m)
- }
- 
- 
- 
- if(!args[1].includes(mentionn)) {
- message.guild.members.forEach(function(member){
-     members.push(member.user.username);
-     indexes.push(member.id);
- })
- 
- let match = sm.findBestMatch(args.join(' '), members)
- 
- let username = match.bestMatch.target;
- 
- let member = message.guild.members.get(indexes[members.indexOf(username)]);
- 
- let embed = new Discord.RichEmbed()
- embed.setDescription(`${member}'s Profile picture :frame_photo: `)
- embed.setImage(`${member.user.avatarURL}`)
- message.channel.send(embed)
-}
-}
-});
+
 
 client.on('message', message => {
 if(!message.channel.guild) return;
