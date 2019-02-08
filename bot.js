@@ -477,7 +477,7 @@ client.on('message', message => {
     
 client.on('ready', () => {
         console.log(`back`);
-              client.user.setActivity("Soon | t!help", {type: 'WATCHING'});
+              client.user.setActivity("t!help | TopBot", {type: 'WATCHING'});
       
       });
 
