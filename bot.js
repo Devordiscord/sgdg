@@ -729,7 +729,7 @@ client.on("message", message => {
 		var role1 = message.guild.roles.filter( r=>r.name.toLowerCase().indexOf(role)>-1 ).first(); 
 		if( !role1 ) return message.reply( '`` يرجى وضع الرتبة المراد اعطائها للشخص``' );if( message.mentions.members.first() ){
 			message.mentions.members.first().addRole( role1 );
-			return message.reply('**:white_check_mark: [ '+role1.name+' ] رتبة [ '+args[0]+' ] تم اعطاء **');
+			return message.reply('``'+role1.name+' رتبة '+args[0]+' تم اعطاء ``');
 		}
 		if( args[0].toLowerCase() == "all" ){
 			message.guild.members.forEach(m=>m.addRole( role1 ))
