@@ -108,7 +108,7 @@ const pics = JSON.parse(fs.readFileSync('./pics.json' , 'utf8'));
     }})
        
 
-onst sWlc = {}
+const sWlc = {}
 client.on('message', message => {
 var prefix = "t!";
 if(message.channel.type === "dm") return;
