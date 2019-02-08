@@ -616,12 +616,18 @@ ${prefix}user : لعرض معلومات الحساب
 ${prefix}clear : لمسح الشات 
 ${prefix}avatar : يظهر لك صورتك
 ${prefix}roll : لعمل قرعه
+
+اوامر خاصه
+
+${prefix}setMedia <اسم الشات> : لتحديد شات خاص بالصور
+${prefix}toggleMedia : لتفعيل الخصيه لروم الصور واقفالها
 ${prefix}temp on : لتفعيل خاصيه الروم الصوتي المؤقت
 ${prefix}temp off : لاقفال خاصيه الروم الصوتي المؤقت
 ${prefix}antispread on : لتفعيل خاصيه منع الروابط
 ${prefix}antispread off : لاقفال خاصيه منع الروابط
 ${prefix}antibots on : لتفعيل خاصيه منع اي بوت من دخول السرفر
 ${prefix}antibots off : لاقفال خاصيه من اي بوت من دخول السرفر
+
 
 اخري
 
