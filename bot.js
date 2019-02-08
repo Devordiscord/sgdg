@@ -1493,7 +1493,7 @@ if (message.content.startsWith(prefix + 'credit')) {
   if(men) {
 message.channel.send(`**${men.username} , :credit_card:  balance is: **\`${profile[men.id].credits}$``)
 } else {
-  message.channel.send(`**${message.author.username}, :credit_card: balance is: **\`${profile[message.author.id].credits}$``)
+  message.channel.send(`** you , :credit_card: balance is: **\`${profile[message.author.id].credits}$``)
 }
 }
  
