@@ -74,9 +74,9 @@ client.on('message', message => {
  message.author.sendMessage(`
 \`\`\`
    ╭━━━━╮╱╱╱╱╱╱╱╭━━╮╱╱╱╭╮           |   
-   ┃╭╮╭╮┃╱╱╱╱╱╱╱┃╭╮┃╱╱╭╯╰╮          |   Time taken: ${msg.createdTimestamp - message.createdTimestamp} ms
-   ╰╯┃┃┣┻━┳━┳━━━┫╰╯╰┳━┻╮╭╯          |   Discord API: ${Math.round(client.ping)} ms.
-   ╱╱┃┃┃╭╮┃╭╋━━┃┃╭━╮┃╭╮┃┃           |   Nema Bot : ${client.user.tag} .
+   ┃╭╮╭╮┃╱╱╱╱╱╱╱┃╭╮┃╱╱╭╯╰╮          |   Time taken: 100 ms
+   ╰╯┃┃┣┻━┳━┳━━━┫╰╯╰┳━┻╮╭╯          |   Discord API: 85 ms.
+   ╱╱┃┃┃╭╮┃╭╋━━┃┃╭━╮┃╭╮┃┃           |   Nema Bot : Torz Bot.
    ╱╱┃┃┃╰╯┃┃┃┃━━┫╰━╯┃╰╯┃╰╮          |   
    ╱╱╰╯╰━━┻╯╰━━━┻━━━┻━━┻━╯          |
 ----------------------------------------------------------   
