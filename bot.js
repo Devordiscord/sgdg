@@ -105,13 +105,12 @@ client.on('message', message => {
      if (message.content === "t!inv") {
 
 
- message.author.sendMessage(`
-**بامكانك دعوة البوت من هنا
+ message.author.sendMessage(`**
+بامكانك دعوة البوت من هنا
 \`\`\`
-https://discordapp.com/api/oauth2/authorize?client_id=533070826011099146&permissions=8&scope=bot
+https://discordapp.com/api/oauth2/authorize?client_id=525434548939653151&permissions=8&scope=bot
 \`\`\`
-**
-`);
+**`);
 
 message.channel.send('```تم ارسال رابط البوت برساله خاصه```');
 
@@ -123,13 +122,11 @@ client.on('message', message => {
      if (message.content === "t!support") {
 
 
- message.author.sendMessage(`
-**
+ message.author.sendMessage(`**
 \`\`\`
-Server Support : https://discord.gg/hDeK9TP
+Server Support : https://discord.gg/cbDc4eS
 \`\`\`
-**
-`);
+**`);
 
 message.channel.send('```تم ارسال سرفر سبورت البوت برساله خاصه```');
 
