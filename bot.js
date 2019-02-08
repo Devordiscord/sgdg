@@ -108,19 +108,57 @@ client.on('message', function(message) {
 });
 	     
 
- client.on('message', message => {    
-  if (message.content.startsWith(prefix + "top")) {
-      const top10 = sql.prepare("SELECT * FROM scores WHERE guild = ? ORDER BY points DESC LIMIT 10;").all(message.guild.id);
-      const embed = new Discord.RichEmbed()
-        .setTitle("**TOP 10 TEXT** :speech_balloon:")
-        .setAuthor('📋 Guild Score Leaderboards', message.guild.iconURL)
-      for(const data of top10) {
-        embed.addField(client.users.get(data.user).tag, `XP: \`${data.points}\` | LVL: \`${data.level}\``);
-      }
-      return message.channel.send({embed});
-    }
-    
-  });
+
+client.on('message',async message => {
+  if(message.author.bot || message.channel.type === 'dm') return;
+  let args = message.content.split(' ');
+  let member = message.member;
+  let mention = message.mentions.users.first();
+  let guild = message.guild;
+  let author = message.author;
+ 
+  let rPoints = Math.floor(Math.random() * 4) + 1;// Random Points
+  tpoints[author.id].points += rPoints;
+  if(args[0] === `${prefix}top`) {
+    let _voicePointer = 1;
+    let _textPointer = 1;
+    let _voiceArray = Object.values(vpoints);
+    let _textArray = Object.values(tpoints);
+    let _topText = as(_textArray, 'points', { reverse: true });
+    let _topVoice = as(_voiceArray, 'points', { reverse: true });;
+    let topRoyale = new Discord.RichEmbed();
+    topRoyale.setAuthor(message.author.username, message.author.avatarURL);
+    topRoyale.setTitle('^ " top');
+    //topRoyale.setThumbnail(message.guild.iconURL);
+    topRoyale.addField(`**TOP 5 TEXT 💬**`, _topText.map(r => `**\`.${_textPointer++}\` | <@${r.id}> \`XP: ${r.points}\`**`).slice(0, 5), true);
+    topRoyale.addField(`**TOP 5 VOICE 🎙**`, _topVoice.map(r => `**\`.${_voicePointer++}\` | <@${r.id}> \`XP: ${r.points}\`**`).slice(0, 5), true);
+    message.channel.send(topRoyale).catch(e => {
+      if(e) return message.channel.send(`**. Error; \`${e.message}\`**`);
+    });
+  }
+});
+
+
+client.on('message', message => {
+ 
+    if(message.content.startsWith(prefix + 'rep')) {
+      if(!message.channel.guild) return;
+                    moment.locale('en');
+                  var getvalueof = message.mentions.users.first()
+                    if(!getvalueof) return message.channel.send(`**:mag: |  ${message.author.username}, the user could not be found.    **`);
+                       if(getvalueof.id == message.author.id) return message.channel.send(`**${message.author.username}, you cant give yourself a reputation !**`)
+    if(profile[message.author.id].reps != moment().format('L')) {
+            profile[message.author.id].reps = moment().format('L');
+            profile[getvalueof.id].rep = Math.floor(profile[getvalueof.id].rep+1);
+         message.channel.send(`** :up:  |  ${message.author.username} has given ${getvalueof} a reputation point!**`)
+        } else {
+         message.channel.send(`**:stopwatch: |  ${message.author.username}, you can raward more reputation  ${moment().endOf('day').fromNow()} **`)
+        }
+       }
+       fs.writeFile('profile.json', JSON.stringify(profile), (err) => {
+if (err) console.error(err);
+})
+});
  
 
 
@@ -188,9 +226,8 @@ ${prefix}short : لاختصار الروابط
 ${prefix}roles : لعرض رتبه السرفر
 ${prefix}user : لعرض معلومات الحساب
 ${prefix}clear : لمسح الشات 
-${prefix}points :لمعرف نقاطق
-${prefix}give : لطعطي نقطه
 ${prefix}top : لمعرف المتقدمين 
+${prefix}rep : لتعطي ريب
 ${prefix}avatar : يظهر لك صورتك
 ${prefix}roll : لعمل قرعه
 
