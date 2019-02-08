@@ -599,39 +599,40 @@ client.on('message', message => {
                                                                                                 
 الاوامر الاداريه 
   
-${prefix}server : لعرض معلومات السرفر
+${prefix}server : لعرض معلومات السيرفر
 ${prefix}setlog : لعمل شات تسجيل
 ${prefix}rolemove : لسحب الرتبه من العضو
 ${prefix}mute : لاعطاء العضو ميوت
 ${prefix}unmute : لفك الميوت عن العضو
 ${prefix}ban : لتبنيد العضو
-${prefix}kick : لركل العضو من السرفر
-${prefix}short : لاختصار الروابط
+${prefix}kick : لركل العضو من السيرفر
+
 
 
 الاوامر العامه
 
-${prefix}roles : لعرض رتبه السرفر
+${prefix}roles : لعرض رتبه السيرفر
 ${prefix}user : لعرض معلومات الحساب
 ${prefix}clear : لمسح الشات 
 ${prefix}avatar : يظهر لك صورتك
 ${prefix}roll : لعمل قرعه
 
+
 اوامر خاصه
 
-${prefix}setMedia <اسم الشات> : لتحديد شات خاص بالصور
-${prefix}toggleMedia : لتفعيل الخصيه لروم الصور واقفالها
+${prefix}setMedia {Nema Chat} : لتحديد شات خاص بالصور
+${prefix}toggleMedia : لتفعيل الخاصية لروم الصور واقفالها
 ${prefix}temp on : لتفعيل خاصيه الروم الصوتي المؤقت
 ${prefix}temp off : لاقفال خاصيه الروم الصوتي المؤقت
 ${prefix}antispread on : لتفعيل خاصيه منع الروابط
 ${prefix}antispread off : لاقفال خاصيه منع الروابط
-${prefix}antibots on : لتفعيل خاصيه منع اي بوت من دخول السرفر
-${prefix}antibots off : لاقفال خاصيه من اي بوت من دخول السرفر
+${prefix}antibots on : لتفعيل خاصيه منع اي بوت من دخول السيرفر
+${prefix}antibots off : لاقفال خاصيه من اي بوت من دخول السيرفر
 
 
 اخري
 
-${prefix}invite : لدعوه البوت الي سرفرك
+${prefix}invite : لدعوه البوت الي سيرفرك
 ${prefix}ping : لمعرفة سرعة استجابة البوت في الوقت الحالي
 ${prefix}support : سيرفر الدعم الفني
  \`\`\`
