@@ -112,27 +112,11 @@ client.on("guildMemberAdd", async member => {
     }
 });
 
-let spread = JSON.parse(fs.readFileSync('./spread.json' , 'utf8'));
- 
- 
+
+
+
+
 client.on('message', message => {
-    if(message.content.startsWith(prefix + "antispread off")) {
-        if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
-        if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
-spread[message.guild.id] = {
-onoff: 'Off',
-}
-message.channel.send(`**⛔ The AntiSpread Is __𝐎𝐅𝐅__ !**`)
-          fs.writeFile("./spread.json", JSON.stringify(spread), (err) => {
-            if (err) console.error(err)
-            .catch(err => {
-              console.error(err);
-          });
-            });
-          }
- 
-        })
-        client.on('message', message => {
     if(message.content.startsWith(prefix + "antispread on")) {
         if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
         if(!message.member.hasPermission('MANAGE_GUILD')) return message.channel.send('**Sorry But You Dont Have Permission** `MANAGE_GUILD`' );
