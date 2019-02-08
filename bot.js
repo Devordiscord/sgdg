@@ -44,7 +44,7 @@ client.on('ready', () => {
 
 
 client.on('guildMemberAdd', member => {
-    const channel = member.guild.channels.find('name', 'welcome');
+    const channel = member.guild.channels.find('name', 'join');
     const millis = new Date().getTime() - member.user.createdAt.getTime();
     const now = new Date();
     const createdAt = millis / 1000 / 60 / 60 / 24;
@@ -71,10 +71,8 @@ client.on('guildMemberAdd', member => {
     const ei = invites[member.guild.id];
     const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
     const inviter = client.users.get(invite.inviter.id);
-    const Galal = member.guild.channels.find("name", "welcome");
-     Galal.send(`**<@${member.user.id}>
-Welcome - To - Pure :musical_score: ! 
-By : <@${inviter.id}> .**`);
+    const Galal = member.guild.channels.find("name", "join");
+     Galal.send(`**Invite By : <@${inviter.id}> .**`);
    //  Galal.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
   }); 
 });
@@ -619,7 +617,7 @@ client.on('message', message => {
 ┃  ╱╱┃┃┃╰╯┃╰╯┃╰━╯┃╰╯┃╰╮   ┃  Average     : 17ms.         ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┨
 ┃  ╱╱╰╯╰━━┫╭━┻━━━┻━━┻━╯   ┃  Nema Bot    : Torz Bot.     ┃         Thank you          ┃
 ┃  ╱╱╱╱╱╱╱┃┃              ┃  Dev's       :! Lòrans. ♪    ┃   For your use TopBot      ┃
-┃  ╱╱╱╱╱╱╱╰╯              ┃                              ┃                            ┃
+┃  ╱╱╱╱╱╱╱╰╯              ┃  Welcome Rom : join          ┃                            ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  
                                                                                                 
 الاوامر الاداريه 
