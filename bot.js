@@ -6,7 +6,7 @@ const fs = require('fs');
 const Canvas = require("canvas");
 const jimp = require("jimp");
 var prefix = "t!";
-const devs = ['525434548939653151','494164834049327125'];
+
 
 
 
@@ -36,82 +36,31 @@ client.on('ready', () => {
 });
 
 
+const adminprefix = "t!vip";
+const devs = ['525434548939653151','494164834049327125'];
 client.on('message', message => {
-	var args = message.content.split(' ');
-	var args1 = message.content.split(' ').slice(1).join(' ');
-	var args2 = message.content.split(' ')[2];
-	var args3 = message.content.split(' ').slice(3).join(' ');
-	var command = message.content.toLowerCase().split(" ")[0];
-	var games = JSON.parse(fs.readFileSync('./games.json', 'utf8'));
-	var muf = message.mentions.users.first();
-	
-	if(message.author.bot) return;
-	if(message.channel.type === 'dm') return;
-	
-// كود تغيير الاسم والافتار وحالة اللعب
-	if(command == prefix + 'setname') {
-		let timecooldown = '1hour';
-		if(!devs.includes(message.author.id)) return;
-		if(cooldownSetName.has(message.author.id)) return message.reply(`**${ms(ms(timecooldown))}** يجب عليك الانتظار`);
-		if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}setname \`\`RezfixBot\`\``).then(msg => msg.delete(7000));
-		if(args1 == client.user.username) return message.reply('**البوت مسمى من قبل بهذا الاسم**').then(msg => msg.delete(5000));
-		
-		cooldownSetName.add(message.author.id);
-		client.user.setUsername(args1);
-		message.reply(`\`\`${args1}\`\` **تم تغيير اسم البوت الى**`);
-		
-		setTimeout(function() {
-			cooldownSetName.delete(message.author.id);
-		}, ms(timecooldown));
-	}
-		if(command == prefix + 'setavatar') {
-			if(!devs.includes(message.author.id)) return;
-			if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}setavatar \`\`Link\`\``).then(msg => msg.delete(7000));
-			
-			client.user.setAvatar(args1).catch(err => console.log(err)).then
-			return message.reply('**حاول مرة اخرى في وقت لاحق**').then(msg => msg.delete(5000));
-			
-			let avatarbot = new Discord.RichEmbed()
-			.setTitle(`:white_check_mark: **تم تغيير صورة البوت الى**`)
-			.setImage(args1)
-			.setTimestamp()
-			.setFooter(`by: ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
-			message.channel.send(avatarbot).then(msg => msg.delete(7000));
-			message.delete();
-		}
-		if(command == prefix + 'setplay') {
-			if(!devs.includes(message.author.id)) return;
-			if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}setplay \`\`www.Rezfix-Host.com\`\``).then(msg => msg.delete(7000));
-			client.user.setActivity(args1);
-			message.reply(`\`\`${args1}\`\` **تم تغيير حالة اللعب الى**`).then(msg => msg.delete(5000));
-			message.delete();
-		};
-		if(command == prefix + 'setwatch') {
-			if(!devs.includes(message.author.id)) return;
-			if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}setwatch \`\`www.Rezfix-Host.com\`\``).then(msg => msg.delete(7000));
-			client.user.setActivity(args1, { type: 'WATCHING' });
-			message.reply(`\`\`${args1}\`\` **تم تغيير حالة المشاهدة الى**`).then(msg => msg.delete(5000));
-			message.delete();
-		};
-		if(command == prefix + 'setlisten') {
-			if(!devs.includes(message.author.id)) return;
-			if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}setlisten \`\`www.Rezfix-Host.com\`\``).then(msg => msg.delete(7000));
-			client.user.setActivity(args1, { type: 'LISTENING' });
-			message.reply(`\`\`${args1}\`\` **تم تغيير حالة السماع الى**`).then(msg => msg.delete(5000));
-			message.delete();
-		};
-	    if(command == prefix + 'setstream') {
-			if(!devs.includes(message.author.id)) return;
-			if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}setstream \`\`www.Rezfix-Host.com\`\``).then(msg => msg.delete(7000));
-			client.user.setActivity(args1, 'https://www.twitch.tv/xiaboodz_');
-			message.reply(`\`\`${args1}\`\` **تم تغيير حالة البث الى**`).then(msg => msg.delete(5000));
-			message.delete();
-		};
-
-
+  var argresult = message.content.split(` `).slice(1).join(' ');
+    if (!devs.includes(message.author.id)) return;
+    
+if (message.content.startsWith(adminprefix + 'setgame')) {
+  client.user.setGame(argresult);
+    message.channel.sendMessage(`**${argresult} تم تغيير بلاينق البوت إلى **`)
+} else 
+  if (message.content.startsWith(adminprefix + 'setname')) {
+client.user.setUsername(argresult).then
+    message.channel.sendMessage(`**${argresult}** : تم تغيير أسم البوت إلى`)
+return message.reply("**لا يمكنك تغيير الاسم يجب عليك الانتظآر لمدة ساعتين . **");
+} else
+  if (message.content.startsWith(adminprefix + 'setavatar')) {
+client.user.setAvatar(argresult);
+  message.channel.sendMessage(`**${argresult}** : تم تغير صورة البوت`);
+      } else     
+if (message.content.startsWith(adminprefix + 'setT')) {
+  client.user.setGame(argresult, "https://www.twitch.tv/idk");
+    message.channel.sendMessage(`**${argresult} تم تغيير تويتش البوت إلى  **`)
+}
 
 });
-
 client.on('ready', () => {
         console.log(`back`);
               client.user.setActivity("Soon | t!help", {type: 'WATCHING'});
