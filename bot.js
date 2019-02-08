@@ -493,8 +493,8 @@ client.on('message', message => {
     if (message.author.bot) return;
      if (message.content === prefix + "help") {
      message.channel.send('```تم ارسال الاوامر في الخاص```');
- message.author.sendMessage(`**
-                           
+ message.author.sendMessage(`
+ \`\`\`                           
                                  ┎  Information About Bot  ┒
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃  ╭━━━━╮╱╱╱╱╱╱╱╭━━╮╱╱╱╭╮      ┃           Addition           ┃         Programmers        ┃
@@ -531,15 +531,19 @@ ${prefix}antispread off : لاقفال خاصيه منع الروابط
 ${prefix}antibots on : لتفعيل خاصيه منع اي بوت من دخول السرفر
 ${prefix}antibots off : لاقفال خاصيه من اي بوت من دخول السرفر
 
+اخري
 
-**
+${prefix}invite : لدعوه البوت الي سرفرك
+${prefix}ping : لمعرفة سرعة استجابة البوت في الوقت الحالي
+${prefix}support : سيرفر الدعم الفني
+ \`\`\`
 `);
 
     }
 });
 client.on('message', message => {
     if (message.author.bot) return;
-     if (message.content === "t!inv") {
+     if (message.content === "t!invite") {
 
 
  message.author.sendMessage(`**
