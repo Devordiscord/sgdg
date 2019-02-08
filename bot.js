@@ -6,6 +6,7 @@ const fs = require('fs');
 const Canvas = require("canvas");
 const jimp = require("jimp");
 var prefix = "t!";
+const devs = ['525434548939653151','494164834049327125'];
 
 
 
@@ -32,6 +33,83 @@ client.on('ready', () => {
   console.log('╚[════════════]╝')
   console.log('')
   console.log('')
+});
+
+
+client.on('message', message => {
+	var args = message.content.split(' ');
+	var args1 = message.content.split(' ').slice(1).join(' ');
+	var args2 = message.content.split(' ')[2];
+	var args3 = message.content.split(' ').slice(3).join(' ');
+	var command = message.content.toLowerCase().split(" ")[0];
+	var games = JSON.parse(fs.readFileSync('./games.json', 'utf8'));
+	var muf = message.mentions.users.first();
+	
+	if(message.author.bot) return;
+	if(message.channel.type === 'dm') return;
+	
+// كود تغيير الاسم والافتار وحالة اللعب
+	if(command == prefix + 'setname') {
+		let timecooldown = '1hour';
+		if(!devs.includes(message.author.id)) return;
+		if(cooldownSetName.has(message.author.id)) return message.reply(`**${ms(ms(timecooldown))}** يجب عليك الانتظار`);
+		if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}setname \`\`RezfixBot\`\``).then(msg => msg.delete(7000));
+		if(args1 == client.user.username) return message.reply('**البوت مسمى من قبل بهذا الاسم**').then(msg => msg.delete(5000));
+		
+		cooldownSetName.add(message.author.id);
+		client.user.setUsername(args1);
+		message.reply(`\`\`${args1}\`\` **تم تغيير اسم البوت الى**`);
+		
+		setTimeout(function() {
+			cooldownSetName.delete(message.author.id);
+		}, ms(timecooldown));
+	}
+		if(command == prefix + 'setavatar') {
+			if(!devs.includes(message.author.id)) return;
+			if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}setavatar \`\`Link\`\``).then(msg => msg.delete(7000));
+			
+			client.user.setAvatar(args1).catch(err => console.log(err)).then
+			return message.reply('**حاول مرة اخرى في وقت لاحق**').then(msg => msg.delete(5000));
+			
+			let avatarbot = new Discord.RichEmbed()
+			.setTitle(`:white_check_mark: **تم تغيير صورة البوت الى**`)
+			.setImage(args1)
+			.setTimestamp()
+			.setFooter(`by: ${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
+			message.channel.send(avatarbot).then(msg => msg.delete(7000));
+			message.delete();
+		}
+		if(command == prefix + 'setplay') {
+			if(!devs.includes(message.author.id)) return;
+			if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}setplay \`\`www.Rezfix-Host.com\`\``).then(msg => msg.delete(7000));
+			client.user.setActivity(args1);
+			message.reply(`\`\`${args1}\`\` **تم تغيير حالة اللعب الى**`).then(msg => msg.delete(5000));
+			message.delete();
+		};
+		if(command == prefix + 'setwatch') {
+			if(!devs.includes(message.author.id)) return;
+			if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}setwatch \`\`www.Rezfix-Host.com\`\``).then(msg => msg.delete(7000));
+			client.user.setActivity(args1, { type: 'WATCHING' });
+			message.reply(`\`\`${args1}\`\` **تم تغيير حالة المشاهدة الى**`).then(msg => msg.delete(5000));
+			message.delete();
+		};
+		if(command == prefix + 'setlisten') {
+			if(!devs.includes(message.author.id)) return;
+			if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}setlisten \`\`www.Rezfix-Host.com\`\``).then(msg => msg.delete(7000));
+			client.user.setActivity(args1, { type: 'LISTENING' });
+			message.reply(`\`\`${args1}\`\` **تم تغيير حالة السماع الى**`).then(msg => msg.delete(5000));
+			message.delete();
+		};
+	    if(command == prefix + 'setstream') {
+			if(!devs.includes(message.author.id)) return;
+			if(!args1) return message.channel.send(`**➥ Useage:** ${prefix}setstream \`\`www.Rezfix-Host.com\`\``).then(msg => msg.delete(7000));
+			client.user.setActivity(args1, 'https://www.twitch.tv/xiaboodz_');
+			message.reply(`\`\`${args1}\`\` **تم تغيير حالة البث الى**`).then(msg => msg.delete(5000));
+			message.delete();
+		};
+
+
+
 });
 
 client.on('ready', () => {
@@ -63,42 +141,167 @@ message.channel.sendEmbed(embed)
 }
 });
 
+
+
+client.on('message', function(message) {
+    if(message.content.startsWith(prefix + 'roll')) {
+        let args = message.content.split(" ").slice(1);
+        if (!args[0]) {
+            message.channel.send('**حط رقم معين يتم السحب منه**');
+            return;
+            }
+    message.channel.send(Math.floor(Math.random() * args.join(' ')));
+            if (!args[0]) {
+          message.edit('1')
+          return;
+        }
+    }
+});
+	     
+ const shorten = require('isgd');
+client.on('message', message => {
+ if (message.content.startsWith(prefix + 'short')) {
+    let args = message.content.split(" ").slice(1);
+  if (!args[0]) return message.channel.send('**استعمل**: '+ prefix +'short <رابط>')
+  if (!args[1]) {
+    shorten.shorten(args[0], function(res) {
+      if (res.startsWith('Error:')) return message.channel.send('**Usage**: '+ prefix +'short <link>');
+      message.channel.send(`اختصار الرابط:**${res}**`);
+    })
+  } else {
+    shorten.custom(args[0], args[1], function(res) {
+      if (res.startsWith('Error:')) return message.channel.send(`اختصار الرابط:**${res}**`);
+      message.channel.send(`اختصار الرابط:**${res}**`);
+})
+}}
+}); 
+
+client.on("message", message => {
+    if (message.author.bot || !message.guild) return; 
+    let score;
+    
+    if (message.guild) {
+      score = client.getScore.get(message.author.id, message.guild.id);
+      if (!score) {
+        score = { id: `${message.guild.id}-${message.author.id}`, user: message.author.id, guild: message.guild.id, points: 0, level: 1 };
+      }
+      score.points++;
+      const curLevel = Math.floor(0.1 * Math.sqrt(score.points));
+      client.setScore.run(score);
+    }
+    if (message.content.indexOf(prefix) !== 0) return;
+  
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
+  
+    if(command === "points") {
+      return message.reply(`You currently have ${score.points} points and are level ${score.level}!`);
+    }
+    
+    if(command === "give") {
+      if(!message.author.id === message.guild.owner) return message.reply("You're not the boss of me, you can't do that!");
+      const user = message.mentions.users.first() || client.users.get(args[0]);
+      if(!user) return message.reply("You must mention someone or give their ID!");
+      const pointsToAdd = parseInt(args[1], 10);
+      if(!pointsToAdd) return message.reply("You didn't tell me how many points to give...");
+          let userscore = client.getScore.get(user.id, message.guild.id);      
+      if (!userscore) {
+        userscore = { id: `${message.guild.id}-${user.id}`, user: user.id, guild: message.guild.id, points: 0, level: 1 };
+      }
+      userscore.points += pointsToAdd;
+      let userLevel = Math.floor(0.1 * Math.sqrt(score.points));
+      userscore.level = userLevel;
+      client.setScore.run(userscore);
+    
+      return message.channel.send(`${user.tag} has received ${pointsToAdd} points and now stands at ${userscore.points} points.`);
+    }
+    
+    if(command === "top") {
+      const top10 = sql.prepare("SELECT * FROM scores WHERE guild = ? ORDER BY points DESC LIMIT 10;").all(message.guild.id);
+      const embed = new Discord.RichEmbed()
+        .setTitle("**TOP 10 TEXT** :speech_balloon:")
+        .setAuthor('📋 Guild Score Leaderboards', message.guild.iconURL)
+        .setColor(0x00AE86);
+  
+      for(const data of top10) {
+        embed.addField(client.users.get(data.user).tag, `XP: \`${data.points}\` | LVL: \`${data.level}\``);
+      }
+      return message.channel.send({embed});
+    }
+    
+  });
+
+ client.on('message', message => {
+    var prefix = 't!'
+    if (message.content.startsWith(prefix + "avatar")) {
+        var mentionned = message.mentions.users.first();
+    var x5bzm;
+      if(mentionned){
+          var x5bzm = mentionned;
+      } else {
+          var x5bzm = message.author;
+          
+      }
+        const embed = new Discord.RichEmbed()
+        .setImage(`${x5bzm.avatarURL}`)
+      message.channel.sendEmbed(embed);
+    }
+}); 
+
+client.on("message", message => {    
+          if(!message.channel.guild) return;
+   if(message.author.bot) return;
+      if(message.content === prefix + "avatar server"){ 
+          const embed = new Discord.RichEmbed()
+  
+      .setTitle(`صورة ** ${message.guild.name} **`)
+  .setAuthor(message.author.username, message.guild.iconrURL)
+    .setImage(message.guild.iconURL)
+
+   message.channel.send({embed});
+      }
+  });
+	     
 client.on('message', message => {
     if (message.author.bot) return;
      if (message.content === prefix + "help") {
-     message.channel.send('```تم ارسال اوامر البوت برساله خاصه```');
-
-
-
-
+     message.channel.send('```تم ارسال رسالة في الخاص```');
  message.author.sendMessage(`
-\`\`\`
-------------------------------------------------------------------------------------------
-  ╭━━━━╮╱╱╱╱╱╱╱╭━━╮╱╱╱╭╮      |           Addition           |        Programmers        |
-  ┃╭╮╭╮┃╱╱╱╱╱╱╱┃╭╮┃╱╱╭╯╰╮     |   Time taken  : 108 ms.      |1- ! Lòrans. ♪             |
-  ╰╯┃┃┣┻━┳━┳━━━┫╰╯╰┳━┻╮╭╯     |   Discord API : 95 ms.       |2- є 3 s α я               |
-  ╱╱┃┃┃╭╮┃╭╋━━┃┃╭━╮┃╭╮┃┃      |   Average     : 17ms.        |---------------------------|
-  ╱╱┃┃┃╰╯┃┃┃┃━━┫╰━╯┃╰╯┃╰╮     |   Nema Bot    : Torz Bot.    |        Thank you          |
-  ╱╱╰╯╰━━┻╯╰━━━┻━━━┻━━┻━╯     |   Dev's       :! Lòrans. ♪   |   For your use Torz Bot   |
-------------------------------------------------------------------------------------------   
+\`\`\`                           
+                                  ┎  Information About Bot  ┒
+ ------------------------------------------------------------------------------------------
+|  ╭━━━━╮╱╱╱╱╱╱╱╭━━╮╱╱╱╭╮      |           Addition           |         Programmers        |
+|  ┃╭╮╭╮┃╱╱╱╱╱╱╱┃╭╮┃╱╱╭╯╰╮     |   Time taken  : 108 ms.      |1- ! Lòrans. ♪              |
+|  ╰╯┃┃┣┻━┳━┳━━━┫╰╯╰┳━┻╮╭╯     |   Discord API : 95 ms.       |2- є 3 s α я                |
+|  ╱╱┃┃┃╭╮┃╭╋━━┃┃╭━╮┃╭╮┃┃      |   Average     : 17ms.        |----------------------------|
+|  ╱╱┃┃┃╰╯┃┃┃┃━━┫╰━╯┃╰╯┃╰╮     |   Nema Bot    : Torz Bot.    |         Thank you          |
+|  ╱╱╰╯╰━━┻╯╰━━━┻━━━┻━━┻━╯     |   Dev's       :! Lòrans. ♪   |    For your use Torz Bot   |
+ ------------------------------------------------------------------------------------------   
                                                                                                 
 الاوامر الاداريه 
   
 ${prefix}server : لعرض معلومات السرفر
 ${prefix}setlog : لعمل شات تسجيل
-${prefix}role : لاعطاء العضو رتبه 
 ${prefix}rolemove : لسحب الرتبه من العضو
-${prefix}roles : لعرض رتبه السرفر
-${prefix}clear : لمسح الشات 
-${prefix}user : لعرض معلومات الحساب
 ${prefix}mute : لاعطاء العضو ميوت
 ${prefix}unmute : لفك الميوت عن العضو
 ${prefix}ban : لتبنيد العضو
 ${prefix}kick : لركل العضو من السرفر
+${prefix}short : لاختصار الروابط
+
 
 الاوامر العامه
 
-SooN
+${prefix}roles : لعرض رتبه السرفر
+${prefix}user : لعرض معلومات الحساب
+${prefix}roles : لعرض رتبه السرفر
+${prefix}clear : لمسح الشات 
+${prefix}points :لمعرف نقاطق
+${prefix}give : لطعطي نقطه
+${prefix}top : لمعرف المتقدمين 
+${prefix}
+${prefix}roll : لعمل قرعه
+
 
 \`\`\`
 `);
