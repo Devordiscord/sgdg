@@ -107,24 +107,61 @@ client.on('message', function(message) {
     }
 });
 	     
-
- const shorten = require('isgd');
-client.on('message', message => {
- if (message.content.startsWith(prefix + 'short')) {
-    let args = message.content.split(" ").slice(1);
-  if (!args[0]) return message.channel.send('**استعمل**: '+ prefix +'short <رابط>')
-  if (!args[1]) {
-    shorten.shorten(args[0], function(res) {
-      if (res.startsWith('Error:')) return message.channel.send('**Usage**: '+ prefix +'short <link>');
-      message.channel.send(`اختصار الرابط:**${res}**`);
-    })
-  } else {
-    shorten.custom(args[0], args[1], function(res) {
-      if (res.startsWith('Error:')) return message.channel.send(`اختصار الرابط:**${res}**`);
-      message.channel.send(`اختصار الرابط:**${res}**`);
-})
-}}
-}); 
+client.on("message", message => {
+    if (message.author.bot || !message.guild) return; 
+    let score;
+    
+    if (message.guild) {
+      score = client.getScore.get(message.author.id, message.guild.id);
+      if (!score) {
+        score = { id: `${message.guild.id}-${message.author.id}`, user: message.author.id, guild: message.guild.id, points: 0, level: 1 };
+      }
+      score.points++;
+      const curLevel = Math.floor(0.1 * Math.sqrt(score.points));
+      client.setScore.run(score);
+    }
+    if (message.content.indexOf(prefix) !== 0) return;
+  
+    const args = message.content.slice(prefix.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
+  
+    if(command === "points") {
+      return message.reply(`You currently have ${score.points} points and are level ${score.level}!`);
+    }
+    
+    if(command === "give") {
+      if(!message.author.id === message.guild.owner) return message.reply("You're not the boss of me, you can't do that!");
+      const user = message.mentions.users.first() || client.users.get(args[0]);
+      if(!user) return message.reply("You must mention someone or give their ID!");
+      const pointsToAdd = parseInt(args[1], 10);
+      if(!pointsToAdd) return message.reply("You didn't tell me how many points to give...");
+          let userscore = client.getScore.get(user.id, message.guild.id);      
+      if (!userscore) {
+        userscore = { id: `${message.guild.id}-${user.id}`, user: user.id, guild: message.guild.id, points: 0, level: 1 };
+      }
+      userscore.points += pointsToAdd;
+      let userLevel = Math.floor(0.1 * Math.sqrt(score.points));
+      userscore.level = userLevel;
+      client.setScore.run(userscore);
+    
+      return message.channel.send(`${user.tag} has received ${pointsToAdd} points and now stands at ${userscore.points} points.`);
+    }
+    
+    if(command === "top") {
+      const top10 = sql.prepare("SELECT * FROM scores WHERE guild = ? ORDER BY points DESC LIMIT 10;").all(message.guild.id);
+      const embed = new Discord.RichEmbed()
+        .setTitle("**TOP 10 TEXT** :speech_balloon:")
+        .setAuthor('📋 Guild Score Leaderboards', message.guild.iconURL)
+        .setColor(0x00AE86);
+  
+      for(const data of top10) {
+        embed.addField(client.users.get(data.user).tag, `XP: \`${data.points}\` | LVL: \`${data.level}\``);
+      }
+      return message.channel.send({embed});
+    }
+    
+  });
+ 
 
 
  client.on('message', message => {
@@ -161,7 +198,7 @@ client.on("message", message => {
 client.on('message', message => {
     if (message.author.bot) return;
      if (message.content === prefix + "help") {
-     message.channel.send('```تم ارسال رسالة في الخاص```');
+     message.channel.send('```تم ارسال الاوامر في الخاص```');
  message.author.sendMessage(`
 \`\`\`                           
                                   ┎  Information About Bot  ┒
