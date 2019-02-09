@@ -1552,17 +1552,6 @@ client.on('message' , message => {
 
 const credits = JSON.parse(fs.readFileSync("./credits.json", "utf8"));
 const coolDown = new Set();
-
-client.on('message',async message => {
-    
-if(message.author.bot) return;
-if(!credits[message.author.id]) credits[message.author.id] = {
-    credits: 50
-};
-
-let userData = credits[message.author.id];
-let m = userData.credits;
-
 client.on("message", (message) => {
   let men = message.mentions.users.first()
  
@@ -1572,13 +1561,10 @@ client.on("message", (message) => {
 if (message.content.startsWith(prefix + 'credit')) {
   if(men) {
     if (!profile[men.id]) profile[men.id] = {
-    lastDaily:'50',
+    lastDaily:'Not Collected',
     credits: 1,
   };
   }
-  fs.writeFile("./creditsCode.json", JSON.stringify(credits), (err) => {
-    if (err) console.error(err);
-  });
   if(men) {
 message.channel.send(`**${message.author.username}, your :credit_card: balance is \`\`${userData.credits}\`\`.**`)
 } else {
@@ -1589,14 +1575,10 @@ message.channel.send(`**${message.author.username}, your :credit_card: balance i
 if(message.content.startsWith(prefix + "daily")) {
   if(profile[message.author.id].lastDaily != moment().format('day')) {
     profile[message.author.id].lastDaily = moment().format('day')
-    profile[message.author.id].credits += 5848548548548548
-     message.channel.send(`**:atm: | ${message.author.username}, you received your :yen: \`\`5848548548548548\`\` credits!**`)
+    profile[message.author.id].credits += 200
+     message.channel.send(`**:atm: | ${message.author.username}, you received your :yen: \`\`200\`\` credits!**`)
 } else {
-  message.channel.send(`**:stopwatch: | ${men.username} , your daily :yen: credits refreshes ${moment().endOf('day').fromNow()}**`)
-  
-      fs.writeFile("./credits.json", JSON.stringify(userData.credits + amount), (err) => {
-    if (err) console.error(err);
-    });
+    message.channel.send(`**:stopwatch: | ${message.author.username}, your daily :yen: credits refreshes ${moment().endOf('day').fromNow()}**`)
 }
   }
 
@@ -1621,7 +1603,7 @@ if(message.content.startsWith(prefix + 'trans')) {
             var mentionned = message.mentions.users.first();
 if (!profile[sender.id]) profile[sender.id] = {}
 if (!profile[sender.id].credits) profile[sender.id].credits = 200;
-fs.writeFile('./credits.json', JSON.stringify(profile), (err) => {
+fs.writeFile('credits.json', JSON.stringify(profile), (err) => {
 if (err) console.error(err);
 })
       var mando = message.mentions.users.id;
@@ -1633,7 +1615,6 @@ if (err) console.error(err);
 message.channel.send(`${men.username} , has tranfered \`$${args[1]}\` to ${men}.`)
 }
 
-});
 
 
 
