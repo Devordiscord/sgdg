@@ -1633,138 +1633,87 @@ message.channel.send(`${men.username} , has tranfered \`$${args[1]}\` to ${men}.
 
 });
 
+let score = JSON.parse(fs.readFileSync('./score.josn' , 'utf8'));
 client.on('message', message => {
+  sql.get(`SELECT * FROM scores WHERE userId ="${message.author.id}"`).then(row => {
+    if (!row) {
+      sql.run("INSERT INTO scores (userId, points, level) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
+    } else {
+      let curLevel = Math.floor(0.3 * Math.sqrt(row.points + 1));
+      if (curLevel > row.level) {
+        row.level = curLevel;
+        sql.run(`UPDATE scores SET points = ${row.points + 1}, level = ${row.level} WHERE userId = ${message.author.id}`);
+var Canvas = require('canvas')
+var jimp = require('jimp')
 
-if (message.content.startsWith("t!profile")) { // الامر
- let canvas = new Canvas(300, 300) //حجم الصوره الي هتظهر
- let ctx = canvas.getContext('2d')
-    let Image = Canvas.Image
-    
-   
-                      //  ava.src = buf;
+const w = ['./levelup.png'];
 
-    fs.readFile('profile.png', function(err, picture) { //مكان الصوره 
-      if (err) throw err
-      var img = new Image
-        		var url = message.author.avatarURL; //افتار صورتك
-		url = url.substring(0, url.indexOf('?'));
-			var dataURL = res.body.toString('base64');
-			dataURL = 'data:image/png;base64,' + dataURL;
-			img.onload = function() {
+        let Image = Canvas.Image,
+            canvas = new Canvas(401, 202),
+            ctx = canvas.getContext('2d');
+        ctx.patternQuality = 'bilinear';
+        ctx.filter = 'bilinear';
+        ctx.antialias = 'subpixel';
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+        ctx.shadowOffsetY = 2;
+        ctx.shadowBlur = 2;
+        fs.readFile(`${w[Math.floor(Math.random() * w.length)]}`, function (err, Background) {
+            if (err) return console.log(err);
+            let BG = Canvas.Image;
+            let ground = new Image;
+            ground.src = Background;
+            ctx.drawImage(ground, 0, 0, 401, 202);
 
-				ctx.save();
-    		ctx.beginPath();
-    		ctx.arc(54, 103, 47, 0, Math.PI * 2, true); // احدثيات الدائره
-		    ctx.closePath();
-		    ctx.clip();
-		    ctx.drawImage(img, 8, 57, 92, 92); // الصوره
-		    ctx.restore();
-			}
-			img.src = dataURL;
-		});
-		
-        ctx.drawImage(img, 1, 1, 300, 300)
-     //   ctx.drawImage(message.author.avatarURL, 152, 27, 95, 95);
-        ctx.font = "regular 11px Cairo" // نوع الخط وحجمه
-        ctx.fillStyle = "#9f9f9f" // لون الخط
-        ctx.fillText(`${message.author.username}`, 140, 137)
-        ctx.fillText(`${mo}  `, 143, 219) //money
-        ctx.fillText(`${po}`, 120, 202) // النقاط
+})
 
-        //Level
-        ctx.font = "regular 21px Cairo"
-        ctx.fillStyle = "#ffffff"
-        ctx.fillText(`${lev}`, 47, 255) //لفل
+                let url = message.author.displayAvatarURL.endsWith(".webp") ? message.author.displayAvatarURL.slice(5, -20) + ".png" : message.author.displayAvatarURL;
+                jimp.read(url, (err, ava) => {
+                    if (err) return console.log(err);
+                    ava.getBuffer(jimp.MIME_PNG, (err, buf) => {
+                        if (err) return console.log(err);
 
-        ctx.save()
+                        //Avatar
+                        let Avatar = Canvas.Image;
+                        let ava = new Avatar;
+                        ava.src = buf;
+                        ctx.drawImage(ava, 152, 27, 95, 95);
+                        
+                                                //wl
+                        ctx.font = '20px Arial';
+                        ctx.fontSize = '25px';
+                        ctx.fillStyle = "#b2b4b7";
+                        ctx.textAlign = "center";
+                        ctx.fillText("LEVEL UP!", 210, 154);
+                        //ur name
+                        ctx.font = '20px Arial Bold';
+                        ctx.fontSize = '28px';
+                        ctx.fillStyle = "#8b8d91";
+                        ctx.textAlign = "center";
+                        ctx.fillText(`LVL ${curLevel}`, 213, 190);
+message.channel.send(`**:up: | ${message.author.username} leveled up!**`)
+message.channel.sendFile(canvas.toBuffer())
+})
+})
         
-      }
-      img.src = picture
-			
-
-
-    setTimeout(function() {
-      fs.readFile(__dirname + '/images_profile/diamond_prof_bg.png', function(err, picture) {
-        if (err) throw err
-        var img = new Image
-        img.onload = () => {
-          ctx.drawImage(img, -1, -1, 0, 0)
-        }
-        img.src = picture
-        let inventoryPicture = canvas.toDataURL()
-        let data = inventoryPicture.replace(/^data:image\/\w+;base64,/, "")
-        let buf = new Buffer(data, 'base64')
-      fs.writeFile(`image.png`, buf)
-      
-        message.channel.send("", {
-          file: `image.png` 
-        })
-      })
-    }, 1000)
-
-
-    function roundedImage(x, y, width, height, radius) {
-      ctx.beginPath();
-      ctx.moveTo(x + radius, y);
-      ctx.lineTo(x + width - radius, y);
-      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-      ctx.lineTo(x + width, y + height - radius);
-      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-      ctx.lineTo(x + radius, y + height);
-      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-      ctx.lineTo(x, y + radius);
-      ctx.quadraticCurveTo(x, y, x + radius, y);
-      ctx.closePath();
+      };
+      sql.run(`UPDATE scores SET points = ${row.points + 1} WHERE userId = ${message.author.id}`);
     }
+  }).catch(() => {
+    console.error;
+    sql.run("CREATE TABLE IF NOT EXISTS scores (userId TEXT, points INTEGER, level INTEGER)").then(() => {
+      sql.run("INSERT INTO scores (userId, points, level) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
+    });
+  });
 
-    function wrapText(context, text, x, y, maxWidth, lineHeight) {
-
-      var words = text.split(' '),
-        line = '',
-        lineCount = 0,
-        i,
-        test,
-        metrics;
-
-      for (i = 0; i < words.length; i++) {
-        test = words[i];
-        metrics = context.measureText(test);
-        while (metrics.width > maxWidth) {
-
-          test = test.substring(0, test.length - 1);
-          metrics = context.measureText(test);
-        }
-        if (words[i] != test) {
-          words.splice(i + 1, 0, words[i].substr(test.length))
-          words[i] = test;
-        }
-
-        test = line + words[i] + ' ';
-        metrics = context.measureText(test);
-
-        if (metrics.width > maxWidth && i > 0) {
-          context.fillText(line, x, y);
-          line = words[i] + ' ';
-          y += lineHeight;
-          lineCount++;
-        } else {
-          line = test;
-        }
-      }
-
-      ctx.fillText(line, x, y);
-    }
-  
+  if (message.content.startsWith(prefix + "level")) {
+    sql.get(`SELECT * FROM scores WHERE userId ="${message.author.id}"`).then(row => {
+      if (!row) return message.reply("Your current level is 0");
+      message.reply(`Your current level is ${row.level}`);
+ });
 
 
-
-
-
-
-
-
-});
-
+}
+})
 
 
 client.login(process.env.BOT_TOKEN);
