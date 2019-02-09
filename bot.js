@@ -90,24 +90,27 @@ if (message.content.startsWith(adminprefix + 'st')) {
 
 
 
-client.on('ready', () => {
-  wait(1200);
 
-  client.guilds.forEach(g => {
-    g.fetchInvites().then(guildInvites => {
-      invites[g.id] = guildInvites;
-    });
-  });
-});
 client.on('guildMemberAdd', member => {
-  member.guild.fetchInvites().then(guildInvites => {
-    const ei = invites[member.guild.id];
-    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-    const inviter = client.users.get(invite.inviter.id);
-    const Galal = member.guild.channels.find("name", "join");
-     Galal.send(`**Invite By : <@${inviter.id}> .**`);
-   //  Galal.send(`<@${member.user.id}> joined using invite code ${invite.code} from <@${inviter.id}>. Invite was used ${invite.uses} times since its creation.`);
-  }); 
+
+    const channel = member.guild.channels.find('welcome', 'join');
+  
+    const millis = new Date().getTime() - member.user.createdAt.getTime();
+    const now = new Date();
+    const createdAt = millis / 1000 / 60 / 60 / 24;
+
+
+
+
+  
+    const embed = new Discord.RichEmbed()
+    
+    .setColor("black")
+    .setDescription(`**تاريخ دخولك للدسكورد منذ ${createdAt.toFixed(0)} يوم**`)
+    .setAuthor(member.user.tag, member.user.avatarURL);
+    channel.sendEmbed(embed);
+
+  
 });
 
 
