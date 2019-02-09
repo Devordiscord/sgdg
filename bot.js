@@ -592,19 +592,25 @@ client.on('message', message => {
          
 });
 
-client.on("message", message => {    
-          if(!message.channel.guild) return;
-   if(message.author.bot) return;
-      if(message.content === prefix + "avatar server"){ 
-          const embed = new Discord.RichEmbed()
-  
-      .setTitle(`صورة ** ${message.guild.name} **`)
-  .setAuthor(message.author.username, message.guild.iconrURL)
-    .setImage(message.guild.iconURL)
-
-   message.channel.send({embed});
+client.on('message', message => {
+  if (!message.content.startsWith(prefix)) return;
+  var args = message.content.split(' ').slice(1);
+  var argresult = args.join(' ');
+       if (message.content.startsWith(prefix + "avatar server")) {
+           var mentionned = message.mentions.users.first();
+		   message.channel.send(`ًںڈ· Server icon URL : `);
+    var MsH;
+      if(mentionned){
+          var MsH = mentionned;
+      } else {
+          var MsH = message.author;
+         message.guild.iconURL
       }
-  });
+          message.channel.send(message.guild.iconURL)
+          message.delete(3000);
+      }
+         
+});
 	     
 client.on('message', message => {
     if (message.author.bot) return;
