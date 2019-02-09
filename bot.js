@@ -1648,8 +1648,6 @@ if (message.content.startsWith("t!profile")) { // الامر
       var img = new Image
         		var url = message.author.avatarURL; //افتار صورتك
 		url = url.substring(0, url.indexOf('?'));
-
-		r1.get(url).then(res => {
 			var dataURL = res.body.toString('base64');
 			dataURL = 'data:image/png;base64,' + dataURL;
 			img.onload = function() {
