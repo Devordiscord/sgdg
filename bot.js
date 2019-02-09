@@ -1510,9 +1510,9 @@ if (message.content.startsWith(prefix + 'credit')) {
   };
   }
   if(men) {
-message.channel.send(`**<@!${mention.id}>, , :credit_card:  balance is: **\`${profile[men.id].credits}$``)
+message.channel.send(`**${message.author.username} , :credit_card:  balance is: **\`${profile[men.id].credits}$``)
 } else {
-  message.channel.send(`**<@!${mention.id}>,, :credit_card: balance is: **\`${profile[message.author.id].credits}$``)
+  message.channel.send(`**${message.author.username}, :credit_card: balance is: **\`${profile[message.author.id].credits}$``)
 }
 }
  
@@ -1522,7 +1522,7 @@ if(message.content.startsWith(prefix + "daily")) {
     profile[message.author.id].credits += 5848548548548548
      message.channel.send(`**<@!${mention.id}>, you collect your \`5848548548548548\` :dollar: daily pounds**`)
 } else {
-    message.channel.send(`**:stopwatch: | <@!${mention.id}>,, your daily :yen: credits refreshes ${moment().endOf('day').fromNow()}**`)
+    message.channel.send(`**:stopwatch: | ${message.author.username}, your daily :yen: credits refreshes ${moment().endOf('day').fromNow()}**`)
 }
   }
 
@@ -1556,7 +1556,7 @@ if (err) console.error(err);
       profile[defineduser.id].credits += (+args[0]);
       profile[sender.id].credits += (-args[0]);
       let mariam = message.author.username
-message.channel.send(`<@!${mention.id}>, has tranfered \`$${args[1]}\` to ${men}.`)
+message.channel.send(`${message.author.username} , has tranfered \`$${args[1]}\` to ${men}.`)
 }
 
 });
