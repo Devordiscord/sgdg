@@ -1682,11 +1682,7 @@ if (message.content.startsWith("t!profile")) { // الامر
       }
       img.src = picture
 			
-    })
-		
-   
 
-    
 
     setTimeout(function() {
       fs.readFile(__dirname + '/images_profile/diamond_prof_bg.png', function(err, picture) {
