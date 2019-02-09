@@ -1606,8 +1606,7 @@ client.on('message', async message => {
 
 
 //كود جديد
-const prefix = "t!";
-const devs = ['525434548939653151']; 
+const prefix = "t!"; 
 client.on('message',async message => {
     
 if(message.author.bot) return;
@@ -1625,14 +1624,14 @@ fs.writeFile("./credits.json", JSON.stringify(credits), (err) => {
       credits: m + 0,
   }
   
-    if(message.content.startsWith(prefix + "credit" || prefix + "credits")) {
+    if(message.content.startsWith("1credit" || "1credits")) {
 message.channel.send(`**${message.author.username}, your :credit_card: balance is \`\`${userData.credits}\`\`.**`);
 }
 });
 
 client.on('message', async message => {
     let amount = 415841584158415841854185;
-    if(message.content.startsWith(prefix + "daily")) {
+    if(message.content.startsWith("1daily")) {
     if(message.author.bot) return;
     if(coolDown.has(message.author.id)) return message.channel.send(`**:stopwatch: | ${message.author.username}, your daily :yen: credits refreshes in \`\`1 Day\`\`.**`);
     
