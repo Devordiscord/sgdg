@@ -1606,7 +1606,7 @@ client.on('message', async message => {
 
 
 //كود جديد
-const prefix = "t!"; 
+const devs = ['525434548939653151']; 
 client.on('message',async message => {
     
 if(message.author.bot) return;
