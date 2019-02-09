@@ -1663,7 +1663,6 @@ if (message.content.startsWith("t!profile")) { // الامر
 			img.src = dataURL;
 		});
 		
-      img.onload = () => {
         ctx.drawImage(img, 1, 1, 300, 300)
      //   ctx.drawImage(message.author.avatarURL, 152, 27, 95, 95);
         ctx.font = "regular 11px Cairo" // نوع الخط وحجمه
