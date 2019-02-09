@@ -1512,7 +1512,7 @@ if (message.content.startsWith(prefix + 'credit')) {
   if(men) {
 message.channel.send(`**${message.author.username} , :credit_card:  balance is: **\`${profile[men.id].credits}$``)
 } else {
-  message.channel.send(`** ${message.author.username}, your :credit_card: balance is `${profile[message.author.id].credits}$` `)
+
 }
 }
  
@@ -1520,7 +1520,7 @@ if(message.content.startsWith(prefix + "daily")) {
   if(profile[message.author.id].lastDaily != moment().format('day')) {
     profile[message.author.id].lastDaily = moment().format('day')
     profile[message.author.id].credits += 5848548548548548
-     message.channel.send(`**${men.username} , you collect your \`5848548548548548\` :dollar: daily pounds**`)
+     message.channel.send(`**\`5848548548548548\` :dollar: daily pounds**`)
 } else {
     message.channel.send(`**:stopwatch: | ${men.username} , your daily :yen: credits refreshes ${moment().endOf('day').fromNow()}**`)
 }
