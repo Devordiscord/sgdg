@@ -1758,7 +1758,7 @@ if (message.content.startsWith("t!profile")) { // الامر
 
 
 
-};
+
 
 
 
