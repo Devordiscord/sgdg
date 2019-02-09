@@ -1550,8 +1550,6 @@ client.on('message' , message => {
    
 
 
-const credits = JSON.parse(fs.readFileSync("./credits.json", "utf8"));
-const coolDown = new Set();
 client.on("message", (message) => {
   let men = message.mentions.users.first()
  
@@ -1603,7 +1601,7 @@ if(message.content.startsWith(prefix + 'trans')) {
             var mentionned = message.mentions.users.first();
 if (!profile[sender.id]) profile[sender.id] = {}
 if (!profile[sender.id].credits) profile[sender.id].credits = 200;
-fs.writeFile('credits.json', JSON.stringify(profile), (err) => {
+fs.writeFile('profile.json', JSON.stringify(profile), (err) => {
 if (err) console.error(err);
 })
       var mando = message.mentions.users.id;
@@ -1614,6 +1612,8 @@ if (err) console.error(err);
       let mariam = message.author.username
 message.channel.send(`${men.username} , has tranfered \`$${args[1]}\` to ${men}.`)
 }
+
+});
 
 
 
