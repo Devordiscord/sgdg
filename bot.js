@@ -1553,7 +1553,7 @@ if(message.content.startsWith(prefix + "daily")) {
 } else {
     message.channel.send(`**:stopwatch: | ${message.author.username}, your daily :yen: credits refreshes ${moment().endOf('day').fromNow()}**`)
 }
-  }
+
 
  
  let cont = message.content.slice(prefix.length).split(" ");
