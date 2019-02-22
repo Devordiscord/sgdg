@@ -1567,18 +1567,35 @@ client.on('message', async message =>{
 
   
 
+  
+     })
     }
   })
 });
 
 
+client.on('message', message => {
+    if (message.content === ('t!bot')) {
+    message.channel.send({
+        embed: new Discord.RichEmbed()
+          .setColor('#36393e')
+            .addField('**Bot Ping** :' , ` ${Date.now() - message.createdTimestamp}` + ' ms', true)
+            .addField('**Servers** :', ` ${client.guilds.size}`, true)
+           .addField('**Channels** :' , `${client.channels.size} ` , true)
+            .addField('**Users** :' ,` ${client.users.size} ` , true)
+            .addField('**Bot Name** :' , `${client.user.tag} ` , true)
+            .addField('**Bot Owner** :' , `<@525434548939653151>` , true)
+            .setFooter(message.author.username, message.author.avatarURL)
+    })
+}
+});
 
 
   client.on('message', (message) => {
     if (message.content.startsWith('t!kick')) {
         var member= message.mentions.members.first();
         member.kick().then((member) => {
-            message.channel.send(member.displayName + '**keeck from the server ! :airplane:  **');
+            message.channel.send('** <@${tomute.id}> keeck from the server ! :airplane:  **');
         }).catch(() => {
             message.channel.send("``لا استطيع طرض العضو``");
         });
@@ -1596,7 +1613,7 @@ client.on('message', (message) => {
       if(!message.member.hasPermission('BAN_MEMBERS')) return message.reply('هذا الخاصية للدارة فقط');
         var member= message.mentions.members.first();
         member.ban().then((member) => {
-         message.channel.send(member.displayName + ' **bann from the server ! **');
+         message.channel.send('** <@${tomute.id}> bann from the server ! **');
         }).catch(() => {
             message.channel.send('``لا استطيع تبنيد العضو``');
         });
