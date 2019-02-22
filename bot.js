@@ -726,15 +726,15 @@ client.on('message', message => {
 client.on('message', message => {
     if (message.author.bot) return;
      if (message.content === prefix + "help") {
-     message.channel.send('```تم ارسال الاوامر في الخاص```');
+     message.channel.send('``تم ارسال الاوامر في الخاص``');
  message.author.sendMessage(`**
                            
                              ┎  Information About Bot  ┒
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃  ╭━━━━╮╱╱╱╱╭━━╮╱╱╱╭╮    ┃           Addition           ┃        Programmers         ┃
 ┃  ┃╭╮╭╮┃╱╱╱╱┃╭╮┃╱╱╭╯╰╮   ┃                              ┃ 1- ! Lòrans. ♪             ┃
-┃  ╰╯┃┃┣┻━┳━━┫╰╯╰┳━┻╮╭╯   ┃  Time taken  : 150 ms.       ┃ 2- є 3 s α я               ┃
-┃  ╱╱┃┃┃╭╮┃╭╮┃╭━╮┃╭╮┃┃    ┃  Discord API : 95 ms.        ┃ 3-' Omar,Malki.            ┃
+┃  ╰╯┃┃┣┻━┳━━┫╰╯╰┳━┻╮╭╯   ┃  Time taken  : 150 ms.       ┃    <@525434548939653151>   ┃
+┃  ╱╱┃┃┃╭╮┃╭╮┃╭━╮┃╭╮┃┃    ┃  Discord API : 95 ms.        ┃                            ┃
 ┃  ╱╱┃┃┃╰╯┃╰╯┃╰━╯┃╰╯┃╰╮   ┃  Average     : 17ms.         ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┨
 ┃  ╱╱╰╯╰━━┫╭━┻━━━┻━━┻━╯   ┃  Nema Bot    : TopBot.       ┃         Thank you          ┃
 ┃  ╱╱╱╱╱╱╱┃┃              ┃  Dev's       :! Lòrans. ♪    ┃   For your use TopBot      ┃
