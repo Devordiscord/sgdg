@@ -10,7 +10,7 @@ const wait = require('util').promisify(setTimeout);
 const { User, MessageMentions } = require('discord.js') // Disocrd Package Classes
 const SQLite = require('sqlite'); // SQLite Package to read & write to sql files and databases
 const path = require('path'); // Path Package to get paths easily
-const ms = require('parse-ms'); // parse-ms Package to format ms to somethings
+const ms = require('ms'); // npm i ms
 var prefix = "t!";
 
 
