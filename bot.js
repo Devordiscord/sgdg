@@ -91,7 +91,7 @@ if (message.content.startsWith(adminprefix + 'st')) {
 
 
 
-const ms = require('ms'); // npm i ms
+
 const cool = [];
 client.on('message',async message => {
   if(message.author.bot) return;
