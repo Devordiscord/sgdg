@@ -195,8 +195,8 @@ client.on('message',async message => {
   if(message.channel.type === 'dm') return;
  
   const args = message.content.split(' ');
-  const credits = require('./credits.json');
-  const path = './credits.json';
+  const credits = require('./credits2.json');
+  const path = './credits2.json';
   const mention = message.mentions.users.first() || client.users.get(args[1]) || message.author;
   const mentionn = message.mentions.users.first() || client.users.get(args[1]);
   const author = message.author.id;
@@ -209,7 +209,7 @@ client.on('message',async message => {
  
  
   if(message.content.startsWith(prefix + "lorn"|| prefix + "lor")) {
-  if(args[0] !== `${prefix}credit` && args[0] !== `${prefix}credits`) return;
+  if(args[0] !== `${prefix}lorn` && args[0] !== `${prefix}lor`) return;
  
   if(args[2]) {
     if(isNaN(args[2])) return message.channel.send('** هذه الخانة يجب ان تتكون من ارقام وليس احرف.**');
