@@ -304,7 +304,7 @@ var prefix = "t!";
 if(message.channel.type === "dm") return;
 if(message.author.bot) return;
   if(!sWlc[message.guild.id]) sWlc[message.guild.id] = {
-    channel: "welcome"
+    channel: "join"
 }
 const channel = sWlc[message.guild.id].channel
   if (message.content.startsWith(prefix + "setwelcome")) {
@@ -1667,6 +1667,8 @@ client.on('message', message => {
 
   client.on('message', (message) => {
     if (message.content.startsWith('t!kick')) {
+	     if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
+      if(!message.member.hasPermission('Kick Members')) return message.channel.send('**Sorry But You Dont Have Permission** `Kick Members`' );
         var member= message.mentions.members.first();
         member.kick().then((member) => {
             message.channel.send('** <@${tomute.id}> keeck from the server ! :airplane:  **');
@@ -1684,7 +1686,8 @@ client.on('message', message => {
 
 client.on('message', (message) => {
     if (message.content.startsWith('t!ban')) {
-      if(!message.member.hasPermission('BAN_MEMBERS')) return message.reply('هذا الخاصية للدارة فقط');
+	    if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
+      if(!message.member.hasPermission('BAN_MEMBERS')) return message.reply('**Sorry But You Dont Have Permission** `BAN_MEMBERS`' ');
         var member= message.mentions.members.first();
         member.ban().then((member) => {
          message.channel.send('** <@${tomute.id}> bann from the server ! **');
