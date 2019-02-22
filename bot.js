@@ -1764,10 +1764,7 @@ client.on('message', message => {
 	      
 	      
 
-const devs = ['525434548939653151']; 
 client.on('message', async msg => {
-  var argresult = message.content.split(` `).slice(1).join(' ');
-    if (!devs.includes(message.author.id)) return;
     if (msg.author.bot) return undefined;
    
     if (!msg.content.startsWith(prefix)) return undefined;
