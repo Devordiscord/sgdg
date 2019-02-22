@@ -1563,9 +1563,7 @@ client.on('message', async message =>{
         message.channel.send(`**<@${tomute.id}> Has been muted ! :white_check_mark:**`);
           message.delete();
 
-          fs.writeFile('./mute.png', P.stringify(bane), (err) => {
 
-  
         }
 
       }
@@ -1573,9 +1571,6 @@ client.on('message', async message =>{
   );
 
 });
-
-});
-
 
 client.on('message', message => {
     if (message.content === ('t!bot')) {
