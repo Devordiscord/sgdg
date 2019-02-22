@@ -148,7 +148,7 @@ client.on('message',async message => {
  
   }
   if(message.content.startsWith(prefix + "daily")) {
-    if(cool.includes(message.author.id)) return message.channel.send(`**:stopwatch: |${mention.username} your daily :yen: credits refreshes ${moment().endOf('day').fromNow()}**`);
+    if(cool.includes(message.author.id)) return message.channel.send(`**لا يمكنك الحصول علي الكريديت الان**`);
     if(mentionn) {
       var one = Math.floor(Math.random() * 9) + 1;
       var two = Math.floor(Math.random() * 9) + 1;
@@ -244,8 +244,8 @@ client.on('message',async message => {
   }
  
   }
-  if(message.content.startsWith(prefix + "daily")) {
-    if(cool.includes(message.author.id)) return message.channel.send(`**:stopwatch: |${mention.username} your daily :yen: credits refreshes ${moment().endOf('day').fromNow()}**`);
+  if(message.content.startsWith(prefix + "ىلب")) {
+    if(cool.includes(message.author.id)) return message.channel.send(`**لا يمكنك الحصول علي الكريديت الان**`);
     if(mentionn) {
       var one = Math.floor(Math.random() * 9) + 1;
       var two = Math.floor(Math.random() * 9) + 1;
