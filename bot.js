@@ -1687,7 +1687,7 @@ client.on('message', message => {
 client.on('message', (message) => {
     if (message.content.startsWith('t!ban')) {
 	    if(!message.channel.guild) return message.reply('**This Command Only For Servers**');
-      if(!message.member.hasPermission('BAN_MEMBERS')) return message.reply('**Sorry But You Dont Have Permission** `BAN_MEMBERS`' ');
+	   if(!message.member.hasPermission('Ban Members')) return message.channel.send('**Sorry But You Dont Have Permission** `Ban Members`' );
         var member= message.mentions.members.first();
         member.ban().then((member) => {
          message.channel.send('** <@${tomute.id}> bann from the server ! **');
