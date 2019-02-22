@@ -1566,11 +1566,14 @@ client.on('message', async message =>{
           fs.writeFile('./mute.png', P.stringify(bane), (err) => {
 
   
+        }
 
-  
-     })
-    }
-  })
+      }
+
+  );
+
+});
+
 });
 
 
