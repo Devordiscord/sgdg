@@ -727,8 +727,7 @@ client.on('message', message => {
     if (message.author.bot) return;
      if (message.content === prefix + "help") {
      message.channel.send('``تم ارسال الاوامر في الخاص``');
- message.author.sendMessage(`**
-                           
+ message.author.sendMessage(` \`\`\`                          
                              ┎  Information About Bot  ┒
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃  ╭━━━━╮╱╱╱╱╭━━╮╱╱╱╭╮    ┃           Addition           ┃        Programmers         ┃
@@ -737,8 +736,8 @@ client.on('message', message => {
 ┃  ╱╱┃┃┃╭╮┃╭╮┃╭━╮┃╭╮┃┃    ┃  Discord API : 95 ms.        ┃                            ┃
 ┃  ╱╱┃┃┃╰╯┃╰╯┃╰━╯┃╰╯┃╰╮   ┃  Average     : 17ms.         ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━┨
 ┃  ╱╱╰╯╰━━┫╭━┻━━━┻━━┻━╯   ┃  Nema Bot    : TopBot.       ┃         Thank you          ┃
-┃  ╱╱╱╱╱╱╱┃┃              ┃  Dev's       :! Lòrans. ♪    ┃   For your use TopBot      ┃
-┃  ╱╱╱╱╱╱╱╰╯              ┃  Welcome Rom : join          ┃                            ┃
+┃  ╱╱╱╱╱╱╱┃┃              ┃                              ┃   For your use TopBot      ┃
+┃  ╱╱╱╱╱╱╱╰╯              ┃                              ┃                            ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  
                                                                                                 
 الاوامر الاداريه 
@@ -751,8 +750,6 @@ ${prefix}unmute : لفك الميوت عن العضو
 ${prefix}ban : لتبنيد العضو
 ${prefix}kick : لركل العضو من السيرفر
 
-
-
 الاوامر العامه
 
 ${prefix}roles : لعرض رتبه السيرفر
@@ -762,7 +759,6 @@ ${prefix}avatar : يظهر لك صورتك
 ${prefix}roll : لعمل قرعه
 ${prefix}credits : لمعرف الكريديت او ارساله
 ${prefix}daily : لتخد رتبك اليومي
-
 
 اوامر خاصه
 
@@ -775,14 +771,13 @@ ${prefix}antispread off : لاقفال خاصيه منع الروابط
 ${prefix}antibots on : لتفعيل خاصيه منع اي بوت من دخول السيرفر
 ${prefix}antibots off : لاقفال خاصيه من اي بوت من دخول السيرفر
 
-
 اخري
 
 ${prefix}invite : لدعوه البوت الي سيرفرك
 ${prefix}ping : لمعرفة سرعة استجابة البوت في الوقت الحالي
 ${prefix}support : سيرفر الدعم الفني
-
-**`);
+ \`\`\`
+`);
 
     }
 });
