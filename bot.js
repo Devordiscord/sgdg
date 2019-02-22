@@ -1568,8 +1568,6 @@ client.on('message', async message =>{
 
       }
 
-  );
-
 });
 
 client.on('message', message => {
@@ -1582,8 +1580,7 @@ client.on('message', message => {
            .addField('**Channels** :' , `${client.channels.size} ` , true)
             .addField('**Users** :' ,` ${client.users.size} ` , true)
             .addField('**Bot Name** :' , `${client.user.tag} ` , true)
-            .addField('**Bot Owner** :' , `<@525434548939653151>` , true)
-            .setFooter(message.author.username, message.author.avatarURL)
+            .addField('**Bot Owner** :' , `<@525434548939653151>` , true)   
     })
 }
 });
