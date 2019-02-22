@@ -1580,7 +1580,7 @@ client.on('message', message => {
            .addField('**Channels** :' , `${client.channels.size} ` , true)
             .addField('**Users** :' ,` ${client.users.size} ` , true)
             .addField('**Bot Name** :' , `${client.user.tag} ` , true)
-            .addField('**Bot Owner** :' , `<@525434548939653151>` , true)   
+            .addField('**Bot Owner** :' , `<@525434548939653151>` , `<@398919620993482753>`, true)   
     })
 }
 });
