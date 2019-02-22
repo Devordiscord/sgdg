@@ -1532,7 +1532,7 @@ client.on('message', async message =>{
     var args = message.content.split(" ").slice(1);
       if(command == "mute") {
         let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-        if(!tomute) return message.reply(":information_source: `#mute @Lorans` يجب تحديد شخص ") .then(m => m.delete(5000));
+        if(!tomute) return message.reply(":information_source: `#mute @Lorans 1d ` يجب تحديد شخص ") .then(m => m.delete(5000));
         if(tomute.hasPermission("MANAGE_MESSAGES"))return      message.channel.send('**I Dont Have Permission** `MANAGE_MASSAGEES`');
         let muterole = message.guild.roles.find(`name`, "Muted");
 
