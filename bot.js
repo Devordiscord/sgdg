@@ -1763,7 +1763,7 @@ client.on('message', message => {
 	      
 	      
 	      
-const adminprefix = "t!";
+
 const devs = ['525434548939653151']; 
 client.on('message', async msg => {
   var argresult = message.content.split(` `).slice(1).join(' ');
