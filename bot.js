@@ -727,7 +727,8 @@ client.on('message', message => {
     if (message.author.bot) return;
      if (message.content === prefix + "help") {
      message.channel.send('```تم ارسال الاوامر في الخاص```');
- message.author.sendMessage(` \`\`\`                                                    
+ message.author.sendMessage(` \`\`\`    
+                            ┎  Information About Bot  ┒
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃  ╭━━━━╮╱╱╱╱╭━━╮╱╱╱╭╮    ┃           Addition           ┃        Programmers         ┃
 ┃  ┃╭╮╭╮┃╱╱╱╱┃╭╮┃╱╱╭╯╰╮   ┃                              ┃ 1- ! Lòrans. ♪             ┃
@@ -737,9 +738,10 @@ client.on('message', message => {
 ┃  ╱╱╰╯╰━━┫╭━┻━━━┻━━┻━╯   ┃  Nema Bot    : TopBot.       ┃         Thank you          ┃
 ┃  ╱╱╱╱╱╱╱┃┃              ┃  Dev's       :! Lòrans. ♪    ┃   For your use TopBot      ┃
 ┃  ╱╱╱╱╱╱╱╰╯              ┃                              ┃                            ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛           
+┗━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┻━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛ 
 
 الاوامر الاداريه 
+
   
 ${prefix}server : لعرض معلومات السيرفر
 ${prefix}setlog : لعمل شات تسجيل
@@ -748,6 +750,7 @@ ${prefix}mute : لاعطاء العضو ميوت
 ${prefix}unmute : لفك الميوت عن العضو
 ${prefix}ban : لتبنيد العضو
 ${prefix}kick : لركل العضو من السيرفر
+
 
 الاوامر العامه
 
@@ -759,6 +762,7 @@ ${prefix}roll : لعمل قرعه
 ${prefix}credits : لمعرف الكريديت او ارساله
 ${prefix}daily : لتخد رتبك اليومي
 
+
 اوامر خاصه
 
 ${prefix}setMedia {Nema Chat} : لتحديد شات خاص بالصور
@@ -769,6 +773,7 @@ ${prefix}antispread on : لتفعيل خاصيه منع الروابط
 ${prefix}antispread off : لاقفال خاصيه منع الروابط
 ${prefix}antibots on : لتفعيل خاصيه منع اي بوت من دخول السيرفر
 ${prefix}antibots off : لاقفال خاصيه من اي بوت من دخول السيرفر
+
 
 اخري
 
