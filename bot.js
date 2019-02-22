@@ -82,7 +82,7 @@ if (message.content.startsWith(adminprefix + 'st')) {
       console.log(`⚠️ Bot restarting... ⚠️`);
       console.log("===============================================\n\n");
       client.destroy();
-      child_process.fork(__dirname + "/bot.js");
+      child_process.fork("bot.js");
       console.log(`Bot Successfully Restarted`);
   }
 
