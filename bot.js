@@ -270,7 +270,7 @@ client.on('message',async message => {
 //
 
 
-const cool = [];
+
 client.on('message',async message => {
   if(message.author.bot) return;
   if(message.channel.type === 'dm') return;
